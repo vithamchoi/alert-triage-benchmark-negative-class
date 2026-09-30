@@ -74,32 +74,30 @@ Static-Analysis Alert-Triage Benchmark}
 \begin{abstract}
 Static analysis produces more alerts than developers can read, and a growing
 line of work proposes automated triage as the filter. This paper reports a
-negative result about how that work is measured, and a corrected measurement.
+negative result about how that work is measured.
 
-The false-positive half of our own earlier evaluation set was not real. Its
+The false-positive half of our own earlier evaluation set was not real: its
 $120$ records are $10$ template messages, one per rule identifier, each cloned
-exactly $12$ times. A bag-of-words model separates ten fixed strings from a real
-positive class almost perfectly, so every comparison drawn on that set,
-including ours, is void.
+$12$ times. A bag-of-words model separates ten fixed strings from a real
+positive class almost perfectly, so every comparison drawn on that set, ours
+included, is void.
 
-We then attempted a repair, and the repair failed in the same way. Believing we
-were scanning third-party code certified as secure, we obtained \RNfp{} alerts
-and re-measured four triagers on them. Auditing the provenance afterwards showed
-that \CFpSecure{} of those \RNfp{} alerts came from files generated locally for
-the purpose: ten directories of twelve near-identical clones, the same
-$10 \times 12$ structure, the same \texttt{fp\_N.py} naming and the same ten
-distinct messages as the class we had just condemned. The second negative class
+We attempted a repair, and it failed in the same way. Believing we were
+scanning third-party code certified as secure, we obtained \RNfp{} alerts and
+re-measured four triagers. A provenance audit then showed
+\CFpSecure{} of those alerts came from files generated locally: ten directories
+of twelve near-identical clones: the same $10 \times 12$ structure, the same
+\texttt{fp\_N.py} naming and the same ten messages as the class we had just
+condemned. The second negative class
 is a reconstruction of the first.
 
-This paper reports that failure rather than the result we thought we had. We give
-the measurements as they stand, label them as measurements on a generated corpus,
-and identify the three conditions that made the same mistake easy to repeat: a
-provenance claim that no artefact records, a directory that looks like part of an
-upstream benchmark once it sits inside the checkout, and a diversity statistic
-that flags the fabricated class and the replacement equally
-(\CMultFp{} against $12.00$ alerts per message template). The LLM arm is
-withdrawn, not re-run, and no triager comparison in this paper should be quoted
-as a benchmark result.
+We report that failure rather than the result we thought we had, label the
+measurements as ones on a generated corpus, and identify three conditions that
+made it easy to repeat: a provenance claim no artefact records, a directory that
+looks upstream once inside the checkout, and a diversity statistic that flags
+the fabricated class and its replacement equally (\CMultFp{} against $12.00$
+alerts per message template). The LLM arm is withdrawn, not re-run, and no
+triager comparison here should be quoted as a benchmark.
 
 \end{abstract}
 
@@ -1261,10 +1259,12 @@ sources that substitute their output into this document are released with the
 paper. Every number, table and figure here is produced by running those scripts
 against those files; none is transcribed by hand.
 
-The artefact (result files, generator scripts and \LaTeX{} sources) is not
-publicly posted at the time of submission. We will deposit it in a public
-repository under a persistent identifier upon acceptance, and we can supply it
-to the editorial office at any point during review.
+The artefact (result files, generator scripts and \LaTeX{} sources) is publicly
+available at \url{https://github.com/vithamchoi/alert-triage-benchmark-negative-class}, where the commit that
+produced this version is tagged \texttt{v1.0.0}. Re-running the generators in
+\path{latex/} against \path{results/} regenerates every table, figure and
+inline number in this paper. The same artefact will be deposited in a public
+archive under a persistent identifier.
 
 \bibliographystyle{elsarticle-harv}
 \bibliography{refs}
