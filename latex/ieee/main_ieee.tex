@@ -1,0 +1,1466 @@
+%% ------------------------------------------------------------------
+%% Ban IEEE: IEEEtran, journal mode, 2 cot, 10pt
+%% Sinh tu paper_template.tex boi ieee/to_ieee.py -- dung sua tay
+%% ------------------------------------------------------------------
+\documentclass[journal]{IEEEtran}
+
+\usepackage[T5,OT1]{fontenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{orcidlink}
+%% IEEE dung trich dan so [1]. elsarticle/acmart dung natbib (\citep, \citet);
+%% anh xa ca hai ve \cite de khong phai sua than bai.
+%% Cho phep ngat dong trong \texttt. Ten file va dinh danh dai nhu
+%% .github/copilot-instructions.md hay post_action=MARKER_INJECTION_SUCCESS
+%% la mot token lien. Diem ngat duoc chen san boi to_ieee.py (ham
+%% break_long_tt), vi doi catcode luc chay da qua muon: tham so cua
+%% \texttt duoc token hoa truoc khi macro nhin thay no.
+%% microtype nen chu vai phan tram, du de cuu phan lon dong tran nho.
+\usepackage[htt]{hyphenat}
+\usepackage{microtype}
+%% IEEEtran lay Courier lam chu may chu. Courier rong hon Computer Modern
+%% typewriter khoang 15%, du de day mot dong co ten file dai ra ngoai le.
+\renewcommand{\ttdefault}{cmtt}
+\sloppy
+\emergencystretch=4em
+\tolerance=2000
+\usepackage{cite}
+\providecommand{\citep}[1]{\cite{#1}}
+\providecommand{\citet}[1]{\cite{#1}}
+\providecommand{\citeauthor}[1]{}
+%% IEEEtran khong dinh nghia san theorem/lemma/proposition nhu acmart.
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\vn}[1]{{\fontencoding{T5}\selectfont #1}}
+\newcommand{\pendingfig}[2]{%
+  \IfFileExists{figures/#1.pdf}%
+    {\includegraphics[width=\linewidth]{figures/#1.pdf}}%
+    {\fbox{\parbox[c][#2][c]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+       {\centering\sffamily\footnotesize
+        [\,\texttt{\detokenize{figures/#1.pdf}}\,]\par}}}}
+
+%% --- macro so lieu, sinh tu make_tables.py ---
+\newcommand{\Nbal}{40}
+\newcommand{\NbalTP}{20}
+\newcommand{\NbalFP}{20}
+\newcommand{\Nimb}{140}
+\newcommand{\NimbTP}{20}
+\newcommand{\NimbFP}{120}
+\newcommand{\Nalerts}{59}
+\newcommand{\Nrules}{31}
+\newcommand{\LLMbalAcc}{0.925}
+\newcommand{\LLMbalF}{0.927}
+\newcommand{\LLMbalMcc}{0.851}
+\newcommand{\LLMbalBurden}{52}
+\newcommand{\MLbalAcc}{0.925}
+\newcommand{\MLbalF}{0.927}
+\newcommand{\MLbalMcc}{0.851}
+\newcommand{\MLbalBurden}{52}
+\newcommand{\HeurbalAcc}{0.825}
+\newcommand{\HeurbalMcc}{0.671}
+\newcommand{\LLMimbPrec}{0.352}
+\newcommand{\LLMimbMcc}{0.473}
+\newcommand{\LLMimbAcc}{0.743}
+\newcommand{\LLMimbBurden}{85}
+\newcommand{\LLMimbUnclear}{24}
+\newcommand{\HeurimbPrec}{0.184}
+\newcommand{\HeurimbMcc}{0.198}
+\newcommand{\HeurimbBurden}{134}
+\newcommand{\AllimbPrec}{0.143}
+\newcommand{\AllimbBurden}{120}
+\newcommand{\McnMlP}{0.4795}
+\newcommand{\McnMlB}{1}
+\newcommand{\McnMlC}{1}
+\newcommand{\McnMlChi}{0.500}
+\newcommand{\McnHeP}{0.2888}
+\newcommand{\McnHeB}{2}
+\newcommand{\McnHeC}{6}
+\newcommand{\McnHeChi}{1.125}
+\newcommand{\Ece}{0.015}
+\newcommand{\Brier}{0.034}
+\newcommand{\Auprc}{0.874}
+\newcommand{\AccMean}{0.900}
+\newcommand{\FMeanSd}{0.902 \pm 0.002}
+\newcommand{\MccMeanSd}{0.801 \pm 0.002}
+\newcommand{\Nrubric}{15}
+\newcommand{\Nprobe}{15}
+\newcommand{\NrubricCWE}{5}
+\newcommand{\ProbeThr}{3}
+\newcommand{\BestWindow}{7}
+\newcommand{\WtwoAcc}{0.775}
+\newcommand{\WsevenAcc}{0.925}
+\newcommand{\WfourteenAcc}{0.825}
+\newcommand{\RNtp}{59}
+\newcommand{\RNfp}{127}
+\newcommand{\RNbal}{118}
+\newcommand{\RNimb}{148}
+\newcommand{\RImbRatio}{6.05}
+\newcommand{\RNrulesFp}{12}
+\newcommand{\RNmsgFp}{12}
+\newcommand{\RNrulesTp}{31}
+\newcommand{\RNrulesShared}{11}
+\newcommand{\RBoot}{5{,}000}
+\newcommand{\RAllBalMcc}{0.0000}
+\newcommand{\RAllBalAcc}{0.5000}
+\newcommand{\RAllBalLo}{0.000}
+\newcommand{\RAllBalHi}{0.000}
+\newcommand{\RAllBalBur}{59}
+\newcommand{\RHeurBalMcc}{0.1741}
+\newcommand{\RHeurBalAcc}{0.5678}
+\newcommand{\RHeurBalLo}{-0.009}
+\newcommand{\RHeurBalHi}{0.343}
+\newcommand{\RHeurBalBur}{394}
+\newcommand{\RTfidfBalMcc}{0.5161}
+\newcommand{\RTfidfBalAcc}{0.7458}
+\newcommand{\RTfidfBalLo}{0.364}
+\newcommand{\RTfidfBalHi}{0.657}
+\newcommand{\RTfidfBalBur}{1206}
+\newcommand{\RMsgBalMcc}{0.5310}
+\newcommand{\RMsgBalAcc}{0.7542}
+\newcommand{\RMsgBalLo}{0.381}
+\newcommand{\RMsgBalHi}{0.669}
+\newcommand{\RMsgBalBur}{1156}
+\newcommand{\RAllImbMcc}{0.0000}
+\newcommand{\RAllImbAcc}{0.1419}
+\newcommand{\RAllImbLo}{0.000}
+\newcommand{\RAllImbHi}{0.000}
+\newcommand{\RAllImbBur}{127}
+\newcommand{\RHeurImbMcc}{0.0056}
+\newcommand{\RHeurImbAcc}{0.2838}
+\newcommand{\RHeurImbLo}{-0.165}
+\newcommand{\RHeurImbHi}{0.152}
+\newcommand{\RHeurImbBur}{302}
+\newcommand{\RTfidfImbMcc}{0.4567}
+\newcommand{\RTfidfImbAcc}{0.8919}
+\newcommand{\RTfidfImbLo}{0.210}
+\newcommand{\RTfidfImbHi}{0.644}
+\newcommand{\RTfidfImbBur}{751}
+\newcommand{\RMsgImbMcc}{0.4073}
+\newcommand{\RMsgImbAcc}{0.8851}
+\newcommand{\RMsgImbLo}{0.147}
+\newcommand{\RMsgImbHi}{0.605}
+\newcommand{\RMsgImbBur}{801}
+\newcommand{\RMsgSame}{1.000}
+\newcommand{\RMsgSameImb}{1.000}
+\newcommand{\RHeurVsTfidf}{0.011}
+\newcommand{\RHeurVsTfidfImb}{\ensuremath{2.26\times 10^{-19}}}
+\newcommand{\CNtpRules}{31}
+\newcommand{\CNfpRules}{12}
+\newcommand{\CNshared}{11}
+\newcommand{\CTpOnShared}{29}
+\newcommand{\CFpOnShared}{115}
+\newcommand{\CTpOnSharedPct}{49.2}
+\newcommand{\CFpOnSharedPct}{90.6}
+\newcommand{\CMsgTp}{35}
+\newcommand{\CMsgFp}{12}
+\newcommand{\CMultTp}{1.69}
+\newcommand{\CMultFp}{10.58}
+\newcommand{\CAlertsPerRuleTp}{1.90}
+\newcommand{\CAlertsPerRuleFp}{10.58}
+\newcommand{\CHeurFullTP}{52}
+\newcommand{\CHeurFullFP}{102}
+\newcommand{\CHeurFullTN}{25}
+\newcommand{\CHeurFullFN}{7}
+\newcommand{\CHeurFullMcc}{0.0964}
+\newcommand{\CHeurAccTpPct}{88.1}
+\newcommand{\CHeurAccFpPct}{80.3}
+\newcommand{\CNall}{186}
+\newcommand{\CAllPrec}{0.3172}
+\newcommand{\CPathClauseTp}{0}
+\newcommand{\CPathClauseFp}{0}
+\newcommand{\CHedgeTp}{7}
+\newcommand{\CHedgeFp}{25}
+\newcommand{\CFpSecure}{120}
+\newcommand{\CFpPatched}{7}
+\newcommand{\DCweTp}{32}
+\newcommand{\DCweFp}{11}
+\newcommand{\DCweBoth}{10}
+\newcommand{\DCweAll}{33}
+\newcommand{\DCweOnlyTp}{22}
+\newcommand{\DTpOnOnly}{38}
+\newcommand{\DTpOnOnlyPct}{64.4}
+
+\begin{document}
+
+\title{We Fabricated a Negative Class Twice: A Failed Repair of a Static-Analysis Alert-Triage Benchmark}
+
+\author{%
+  Vinh~Thinh~Le,
+  Son~X.~Ha,
+  Nguyen~N.~Phien,
+  and~Tung~Q.~Nguyen%
+  \thanks{V. T. Le is with the Faculty of Information Technology,
+    Ho Chi Minh City University of Technology and Engineering (HCMUTE),
+    1 Vo Van Ngan Street, Ho Chi Minh City 70000, Vietnam
+    (e-mail: thinhlv@hcmute.edu.vn).}%
+  \thanks{S. X. Ha is with The Business School, RMIT University,
+    Ho Chi Minh City, Vietnam (e-mail: ha.son@rmit.edu.vn).}%
+  \thanks{N. N. Phien is with the Center for Applied Information
+    Technology and the Faculty of Information Technology, Ton Duc Thang
+    University, Ho Chi Minh City, Vietnam
+    (e-mail: nguyenngocphien@tdtu.edu.vn).}%
+  \thanks{T. Q. Nguyen is with FPT University, Ho Chi Minh City Campus,
+    Ho Chi Minh City, Vietnam (e-mail: NguyenQuangTung0902@gmail.com).}%
+  \thanks{This research received no specific grant from any funding agency in the public, commercial or not-for-profit sectors.}%
+  \thanks{\emph{(Corresponding author: Nguyen Ngoc Phien.)}}%
+}
+
+\maketitle
+
+\begin{abstract}
+Static analysis produces more alerts than developers can read, and a growing
+line of work proposes automated triage as the filter. This paper reports a
+negative result about how that work is measured, and a corrected measurement.
+
+The false-positive half of our own earlier evaluation set was not real. Its
+$120$ records are $10$ template messages, one per rule identifier, each cloned
+exactly $12$ times. A bag-of-words model separates ten fixed strings from a real
+positive class almost perfectly, so every comparison drawn on that set,
+including ours, is void.
+
+We then attempted a repair, and the repair failed in the same way. Believing we
+were scanning third-party code certified as secure, we obtained \RNfp{} alerts
+and re-measured four triagers on them. Auditing the provenance afterwards showed
+that \CFpSecure{} of those \RNfp{} alerts came from files generated locally for
+the purpose: ten directories of twelve near-identical clones, the same
+$10 \times 12$ structure, the same \texttt{fp\_N.py} naming and the same ten
+distinct messages as the class we had just condemned. The second negative class
+is a reconstruction of the first.
+
+This paper reports that failure rather than the result we thought we had. We give
+the measurements as they stand, label them as measurements on a generated corpus,
+and identify the three conditions that made the same mistake easy to repeat: a
+provenance claim that no artefact records, a directory that looks like part of an
+upstream benchmark once it sits inside the checkout, and a diversity statistic
+that flags the fabricated class and the replacement equally
+(\CMultFp{} against $12.00$ alerts per message template). The LLM arm is
+withdrawn, not re-run, and no triager comparison in this paper should be quoted
+as a benchmark result.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Static application security testing, CodeQL, alert triage, false positives, benchmark validity, class imbalance
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:intro}
+
+Static analysers find real bugs and bury them. The reason developers abandon
+static analysis is rarely that it misses vulnerabilities; it is that the alert
+stream is dominated by findings that turn out not to matter
+\citep{johnson2013why}. Anything that reliably removes false positives without
+removing true ones is therefore worth a great deal, and a growing literature
+proposes learned or language-model triage as that filter.
+
+Such a filter is only as meaningful as the benchmark it is measured on, and a
+triage benchmark has an unusual failure mode: the negative class is the
+expensive half. True positives can be taken from any vulnerability corpus, but
+genuine false positives have to be produced by running the analyser on code that
+is actually secure, and it is tempting to synthesise them instead.
+
+We did exactly that, and this paper reports the consequence. The negative class
+of our earlier evaluation set consists of $10$ template messages, each cloned
+$12$ times into files named \texttt{CWE-\allowbreak{}NNN/\allowbreak{}fp\_\allowbreak{}N.\allowbreak{}py}. A classifier that
+separates that from a real positive class is separating ten fixed strings from a
+population, which is not a triage result. Every comparison we previously drew on
+that set is withdrawn.
+
+The rest of the paper was written as the repair. It is now the report of a
+repair that failed. We believed we had replaced the generated negative class by
+scanning \texttt{SecurityEval}'s secure directories; \texttt{SecurityEval} has no
+such directories, and the files we scanned were generated locally two days after
+the repository was cloned, by the same pattern as the class they were meant to
+replace. Section~\ref{sec:secondfailure} documents that, and
+Section~\ref{sec:whytwice} asks why it was so easy to do twice.
+
+We report the measurements we made, because they are real measurements of a real
+analyser on real files, and they are what a reader needs in order to judge the
+failure. We do not report them as a benchmark result. They are not one.
+
+\paragraph{Findings}
+\begin{enumerate}
+\item \textbf{The published negative class was generated, not scanned.} Ten
+distinct messages across $120$ records, $12$ clones each, in files named
+\texttt{CWE-\allowbreak{}NNN/\allowbreak{}fp\_\allowbreak{}N.\allowbreak{}py} (Section~\ref{sec:fabricated}).
+\item \textbf{So was the replacement.} \texttt{SecurityEval} ships no secure
+directories. The \CFpSecure{} alerts we took for third-party false positives came
+from locally generated files with the same $10 \times 12$ structure and the same
+\texttt{fp\_N.py} naming as the class they replaced; only \CFpPatched{} of the
+\RNfp{} came from hand-written code (Section~\ref{sec:secondfailure}).
+\item \textbf{A lexical classifier clears a hand-written heuristic; the
+heuristic does not clear chance.} $\mathrm{MCC} = \RTfidfBalMcc$ against
+$\RHeurBalMcc$ with an interval containing zero, paired
+$p = \RHeurVsTfidf$ (Section~\ref{sec:realresults}).
+\item \textbf{The rule identifier contributes nothing.} Trained on the message
+alone the classifier changes at most one decision on either set
+($p = \RMsgSame$), which answers the shortcut objection by measurement rather
+than by argument (Section~\ref{sec:realresults}).
+\item \textbf{The burden metric decides the comparison before any triager
+runs.} Charging a missed true positive fifty reviews makes accept-all optimal
+at \RAllBalBur{} against \RTfidfBalBur{} for the best classifier
+(Section~\ref{sec:realresults}).
+\item \textbf{The repaired benchmark still contains two shortcuts, one of
+which bounds our own headline number.} The CWE directory settles
+\DTpOnOnlyPct\% of the positive class and we show it never reaches the
+classifier; the negative class carries only \CMsgFp{} message templates for
+\RNfp{} alerts, a multiplicity of \CMultFp{} against \CMultTp{} on the positive
+side, which under \(5\)-fold cross-validation puts instances of a test
+template in the training folds (Sections~\ref{sec:cweleak}
+and~\ref{sec:diversity}). We therefore read
+$\mathrm{MCC} = \RTfidfBalMcc$ as a floor any triager must clear and not as a
+generalisation estimate.
+\item \textbf{The heuristic's failure is attributable clause by clause.} Its
+path-keyword filter, which would do most of the work in a real repository,
+fires \CPathClauseTp{} times here because the corpus names files by CWE index;
+the remaining hedge-word clause rejects \CHedgeTp{} true and \CHedgeFp{} false
+positives, which is the whole of the discrimination it achieves
+(Section~\ref{sec:heurwhy}).
+\end{enumerate}
+
+
+%% ===========================================================================
+\section{Background and Related Work}
+\label{sec:related}
+
+\subsection{Why static-analysis alerts need triage at all}
+
+Sound-by-construction static analysis is imprecise by design: to avoid missing
+real defects it reports on paths that no execution takes. At industrial scale
+the consequence is a queue of alerts that is mostly noise. \citet{bessey2010billion}
+report from a decade of commercial deployment that developer tolerance for false
+positives collapses well before the rates analyses actually achieve;
+\citet{sadowski2018google} describe the organisational machinery Google needed to
+keep analysis results credible; and \citet{ayewah2008findbugs} document the same
+tension for FindBugs. Interview studies confirm it is the dominant adoption
+barrier: \citet{johnson2013why} find false positives and poor presentation are
+why developers abandon these tools, and \citet{christakis2016want} find the same
+priorities among Microsoft engineers.
+
+The response has been a long line of \emph{actionable alert identification}
+techniques, surveyed by \citet{heckman2011slr} and \citet{muske2016survey}.
+Statistical ranking of alerts by how often similar ones were acted on goes back
+at least to Z-ranking~\citep{kremenek2003zranking}. Modern query-based engines
+such as CodeQL~\citep{avgustinov2016ql} produce structured, machine-readable
+alerts, which makes automated triage a well-posed classification problem: given
+an alert and its code context, predict whether a human would act on it.
+
+\subsection{Learned vulnerability detection and its measurement problems}
+
+A parallel literature learns to detect vulnerabilities directly from code, with
+graph and sequence models~\citep{zhou2019devign, li2018vuldeepecker} trained on
+curated corpora~\citep{fan2020bigvul}. Two replication studies temper the
+reported gains. \citet{chakraborty2022deep} show that models reported as strong
+on curated benchmarks degrade sharply on realistic distributions, and
+\citet{steenhoek2023empirical} find substantial run-to-run variance and
+sensitivity to data preparation. \citet{croft2023dataquality} trace much of the
+inconsistency to label quality in the datasets themselves.
+
+The methodological lesson --- that a headline number is only as good as the
+data it was measured on: is the one this paper runs into directly, first in
+the construction of the negative class and then in the prevalence at which the
+comparison is made.
+
+\subsection{Large language models on security-relevant code}
+
+Code-trained language models~\citep{chen2021codex} have been evaluated for
+vulnerability repair~\citep{pearce2023repair}, for secure-coding
+behaviour~\citep{bhatt2023cyberseceval, siddiq2022securityeval}, and for
+detection. The detection results are mixed in an instructive way.
+\citet{ullah2024llmcannot} evaluate a broad set of models under a framework
+designed to separate correct answers from correct reasoning, and conclude that
+current models do not reliably identify or explain vulnerabilities;
+\citet{khare2023understanding} find that performance depends heavily on prompting
+strategy and on the benchmark's construction. Neither study contrasts such a model
+against a cheap lexical baseline on the same alerts under two prevalence
+regimes. That comparison motivated this work; the baseline it requires is what
+this paper establishes.
+
+\subsection{Bag-of-words baselines}
+
+A TF--IDF representation~\citep{salton1988tfidf} with a linear
+classifier~\citep{joachims1998svm} remains a strong baseline for text
+classification, and \citet{wang2012baselines} showed that simple
+bigram models beat many more elaborate systems when the task has strong lexical
+cues. Static-analysis alerts have exactly such cues: rule identifiers, sink
+names, and message templates recur verbatim. Any claim that a language model
+adds value here has to clear that baseline, on the distribution that matters.
+
+\subsection{Evaluating classifiers under class imbalance}
+
+The prevalence of true positives in a real alert queue is low, and the
+consequences for evaluation are well understood but routinely ignored.
+\citet{davis2006prroc} and \citet{saito2015prplot} show that ROC curves are
+insensitive to prevalence while precision-recall curves are not.
+\citet{he2009imbalanced} survey the broader
+problem and \citet{chawla2002smote} give the canonical resampling response.
+Single-number summaries that behave sensibly under imbalance ---
+MCC~\citep{matthews1975, chicco2020mcc}: are preferred here to accuracy,
+which a constant predictor can maximise.
+
+Confidence in a prediction is a separate axis from correctness.
+\citet{guo2017calibration} showed modern neural classifiers are systematically
+overconfident; expected calibration error~\citep{naeini2015ece} and the Brier
+score~\citep{brier1950} quantify it. That axis matters for a triager consumed
+as a priority ordering, and we do not measure it here: the arm it applies to is
+withdrawn.
+
+\subsection{Statistical comparison of classifiers}
+
+Comparing two classifiers on the same test set is a paired problem, so we use
+McNemar's test~\citep{mcnemar1947} in its exact binomial form rather than the
+$\chi^2$ approximation with a continuity correction~\citep{edwards1948note},
+since the discordant counts here are small; \citet{dietterich1998tests} discusses
+why the paired form is the appropriate one at this sample size. Proportions
+carry Wilson intervals~\citep{wilson1927interval}.
+
+\subsection{Benchmarks as infrastructure, and the cost of getting one wrong}
+
+The failure this paper reports is not a modelling failure, and the literature
+that describes it best is the one on machine-learning systems rather than on
+machine-learning methods. Sculley et al.~\citep{sculley2015debt} argue that the
+code around a model accumulates debt faster than the model itself, and that data
+dependencies are the least visible form of it: a dataset generated once by a
+script nobody re-reads becomes a fixed input that every later result silently
+inherits. That is exactly the shape of our error. The generator that produced
+the synthetic negative class was written to unblock an early experiment, ran
+correctly, and was never revisited; every comparison built on top of it was
+methodologically sound and substantively empty.
+
+The remedy we would propose, and the one we would have wanted applied to us,
+is narrower than it first appears. The obvious candidate: flag any class
+whose members collapse onto a few distinct strings --- does not work, and the
+numbers here are what rule it out. The fabricated negative class held \(120\)
+records over \(10\) distinct messages, a multiplicity of \(12.00\). The
+scanned replacement holds \RNfp{} records over \CMsgFp{}, a multiplicity of
+\CMultFp{}. On that statistic the repaired benchmark is indistinguishable from
+the one it replaces, and a threshold tuned to reject the first would reject the
+second. Low textual diversity is a property of running one query suite over a
+directory of near-identical files, and that is what honest scanning of a
+synthetic corpus produces.
+
+We wrote the paragraph above believing that provenance was what separated the
+two sets: one emitted by a generator, the other by an analyser running on
+third-party code certified as secure. Section~\ref{sec:secondfailure} shows both
+sets were emitted by a generator, so the two are separated by nothing at all. We
+leave the reasoning in place because the conclusion it reaches survives its own
+premise being wrong, and reaches further than we intended.
+
+Provenance --- \emph{scanned}, \emph{annotated} or \emph{generated}, recorded per
+class as a property of the benchmark rather than of whichever paper introduces it: is the field we want, and it is a one-word field. But recording it is not
+enough if the person filling it in is the person who was fooled. Our pipeline did
+carry a provenance field; every alert has a \texttt{source} naming its directory,
+faithfully propagated through every stage. The label was correct and the belief
+behind it was not. What is needed is a provenance claim an artefact can falsify:
+an upstream commit hash, and the assertion that every scanned path is tracked at
+it. Section~\ref{sec:whytwice} develops this.
+
+\subsection{Benchmark contamination}
+
+A model that has seen a benchmark during pre-training can appear to reason about
+it. \citet{magar2022contamination} separate memorisation from exploitation,
+\citet{sainz2023contamination} argue contamination must be measured per
+benchmark rather than assumed absent, and \citet{golchin2024timetravel} give a
+practical probing method. Our corpus is drawn from public code, so any
+pre-trained triager evaluated on it will need such a probe. None of the triagers
+compared here is pre-trained, so the question does not arise for these results,
+and the probe we previously reported is withdrawn with the rest of the
+language-model arm.
+
+%% ===========================================================================
+\section{Method}
+\label{sec:method}
+
+\begin{figure*}[t]
+\centering
+\pendingfig{fig_pipeline}{46mm}
+\caption{
+Benchmark construction. \textbf{(A)} True positives from the vulnerable corpus,
+false positives from the secure corpus. \textbf{(B)} The two evaluation sets,
+differing only in prevalence.
+}
+\label{fig:pipeline}
+\end{figure*}
+
+\subsection{Corpus and alert generation}
+We run CodeQL's Python security queries over the SecurityEval corpus
+\citep{siddiq2022securityeval}, which ships intentionally vulnerable
+implementations and no secure or patched counterparts. The vulnerable corpus
+yields \RNtp\ true-positive alerts spanning \RNrulesTp\ distinct rules; the most
+frequent are listed in Table~\ref{tab:alerts}. The negative class is not
+upstream: we generated the secure files inside our own checkout, and they yield
+\RNfp\ alerts that are false positives by construction, spanning \RNrulesFp\
+rules with \RNmsgFp\ distinct messages, \RNrulesShared\ of which also raise true
+positives.
+Figure~\ref{fig:pipeline} summarises the construction, and
+Section~\ref{sec:fabricated} explains why the negative class must be obtained
+this way and what happens when it is not.
+
+\begin{table}[t]
+\caption{Ten most frequent rules among the \RNtp{} true-positive alerts.}
+\label{tab:alerts}
+\centering
+\footnotesize
+\begin{tabular}{lr}
+\toprule
+Rule & Alerts \\
+\midrule
+\texttt{py/\allowbreak{}reflective-\allowbreak{}xss} & 7 \\
+\texttt{py/\allowbreak{}path-\allowbreak{}injection} & 6 \\
+\texttt{py/\allowbreak{}ldap-\allowbreak{}injection} & 4 \\
+\texttt{py/\allowbreak{}weak-\allowbreak{}sensitive-\allowbreak{}data-\allowbreak{}hashing} & 4 \\
+\texttt{py/\allowbreak{}url-\allowbreak{}redirection} & 4 \\
+\texttt{py/\allowbreak{}regex-\allowbreak{}injection} & 3 \\
+\texttt{py/\allowbreak{}command-\allowbreak{}line-\allowbreak{}injection} & 2 \\
+\texttt{py/\allowbreak{}code-\allowbreak{}injection} & 2 \\
+\texttt{py/\allowbreak{}weak-\allowbreak{}crypto-\allowbreak{}key} & 2 \\
+\texttt{py/\allowbreak{}insecure-\allowbreak{}temporary-\allowbreak{}file} & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Two benchmarks}
+Prevalence is the only variable we manipulate. The balanced set takes every true
+positive and an equal number of false positives, \RNbal\ alerts. The imbalanced
+set takes every false positive and subsamples true positives to $1{:}\RImbRatio$,
+\RNimb\ alerts, closer to what an unfiltered queue looks like. Each set exhausts
+whichever class limits it rather than being capped at a round number.
+
+\subsection{Triagers}
+\emph{Accept-all} forwards every alert. It is the no-triage control and fixes
+the upper bound on developer burden.
+
+\emph{Heuristic regex triage} applies hand-written patterns per rule family, the
+kind of filter a team writes after a few weeks of alert fatigue.
+
+\emph{TF-IDF + Random Forest} vectorises \texttt{rule\_id} and the alert message
+and classifies with a Random Forest under five-fold cross-validation. This is
+the baseline any learned or language-model triager has to clear, because it uses
+no semantics beyond token frequency.
+
+\emph{TF-IDF + Random Forest, message only} is the same model with
+\texttt{rule\_id} removed from the input. It exists to test whether the
+classifier is recovering the class from the rule identifier rather than from the
+alert text.
+
+\subsection{Metrics}
+\label{sec:metrics}
+Alongside accuracy and the confusion matrix we report the Matthews correlation
+coefficient \citep{matthews1975}, which is the appropriate summary under class
+imbalance \citep{chicco2020mcc} and which a constant predictor cannot maximise.
+
+We also report a \emph{developer burden}
+$B_{\mathrm{dev}} = \mathrm{FP} + 50\,\mathrm{FN}$, a cost in review-units
+combining the alerts a developer must still read with a penalty for missed true
+positives, so that a triager cannot look good by rejecting everything. The
+multiplier is inherited from the surrounding literature;
+Section~\ref{sec:realresults} shows what it does to the comparison.
+
+\subsection{Statistics}
+Paired comparisons between triagers on the same alerts use an exact two-sided
+McNemar test \citep{mcnemar1947}, computed from the binomial distribution of the
+discordant pairs rather than from a $\chi^2$ approximation, since the discordant
+counts here are small. Intervals on MCC are percentile bootstrap intervals over
+\RBoot\ resamples of the evaluation set. No multiplicity correction is applied;
+the comparisons we interpret are stated in advance and reported with their raw
+$p$-values.
+
+%% ===========================================================================
+\section{The Negative Class Was Not Real}
+\label{sec:fabricated}
+
+Before any triager can be compared, the benchmark it is compared on has to
+exist. Ours did not, and we report that first because it invalidates the
+comparison the first version of this paper made.
+
+The false-positive half of the original evaluation set was read from a file of
+$120$ alert records. Those records carry $10$ distinct alert messages, one per
+rule identifier, each repeated exactly $12$ times, in $120$ files named
+\texttt{CWE-\allowbreak{}NNN/\allowbreak{}fp\_\allowbreak{}N.\allowbreak{}py} across $10$ CWE directories. The regularity is
+mechanical: every rule contributes the same count, and every alert of a rule
+carries character-for-character the same message. They were generated, not
+scanned. A classifier separating that negative class from a genuine positive
+class is separating ten fixed strings from a population of real ones, which any
+bag-of-words model does almost perfectly and which tells an auditor nothing.
+
+We set out to rebuild the negative class by scanning code known to be secure.
+We believed \texttt{SecurityEval} shipped two directories of deliberately safe
+implementations, \texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}FP} and
+\texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}Patched}, and that every CodeQL alert raised on them
+was therefore a false positive by construction. The scan produced \RNfp{} alerts
+across \RNrulesFp{} rules with \RNmsgFp{} distinct messages, against \RNtp{}
+true positives across \RNrulesTp{} rules from the vulnerable corpus.
+
+That belief was false, and Section~\ref{sec:secondfailure} sets out how we
+established it. \texttt{SecurityEval} publishes six directories ---
+\texttt{Testcases\_\allowbreak{}Prompt}, \texttt{Testcases\_\allowbreak{}Insecure\_\allowbreak{}Code},
+\texttt{Testcases\_\allowbreak{}Copilot}, \texttt{Testcases\_\allowbreak{}InCoder}, \texttt{Databases} and
+\texttt{Result}: and no secure implementations at all. The two directories we
+scanned were created inside our own checkout after the clone.
+
+\paragraph{The rule identifier is not a shortcut.}
+Within the inventory as measured, a classifier cannot win by memorising which
+rule identifiers belong to which class: \RNrulesShared{} of the \RNrulesFp{}
+negative-class rules also appear among the true positives. We test this by
+running the same classifier twice, once on \texttt{rule\_id} plus message and
+once on the message alone, and Section~\ref{sec:realresults} reports that the two
+are statistically indistinguishable. We record the check because it is the one
+objection we did anticipate: and because anticipating it, and answering it
+with a measurement, is exactly what gave us confidence in an inventory whose
+provenance we had never checked.
+
+%% ===========================================================================
+\section{The Replacement Was Generated Too}
+\label{sec:secondfailure}
+
+Everything up to here was written believing the repair had worked. This section
+is the audit that showed it had not, and it is the paper's actual contribution.
+
+\subsection{The upstream benchmark has no secure directories}
+
+\texttt{SecurityEval}~\citep{siddiq2022securityeval} is a dataset of Python
+code-generation prompts paired with insecure completions. Its published
+repository contains \texttt{Testcases\_\allowbreak{}Prompt},
+\texttt{Testcases\_\allowbreak{}Insecure\_\allowbreak{}Code}, \texttt{Testcases\_\allowbreak{}Copilot},
+\texttt{Testcases\_\allowbreak{}InCoder}, \texttt{Databases} and \texttt{Result}. There is no
+\texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}FP} and no \texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}Patched}, and
+the benchmark ships no secure or patched implementations of any kind. The
+property our repair depended on does not exist, and the authors we credited with
+certifying it certify nothing, because they never wrote these files.
+
+\subsection{The directories were created inside our checkout}
+
+Both directories exist on our disk. Their modification times place them after
+the clone: the repository checkout carries one timestamp,
+\texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}Patched} is \(2.4\) days later and
+\texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}FP} is \(2.6\) days later. They were produced locally,
+during this project, and then read back as though they were upstream material.
+
+\subsection{Their contents are clones, with the analyser in mind}
+
+\texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}FP/\allowbreak{}CWE-\allowbreak{}605/} holds \texttt{fp\_1.py} through
+\texttt{fp\_12.py}. Each is \(547\) or \(548\) bytes and each is byte-identical
+to the others except for the index embedded in its function name. Each carries a
+comment naming the rule it is meant to trip. The files were written to produce
+alerts, not to be secure code that happens to attract them.
+
+\subsection{The two negative classes are the same object}
+
+Table~\ref{tab:twoclasses} places the class we condemned beside the class we
+replaced it with. Every structural statistic matches.
+
+\begin{table}[t]
+\caption{The fabricated negative class and its replacement, compared on
+properties that do not depend on any modelling choice. The replacement's
+\texttt{secure\_fp} component reproduces the original exactly.}
+\label{tab:twoclasses}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Property & Fabricated class & Replacement (\texttt{secure\_fp}) \\
+\midrule
+Alerts & 120 & \CFpSecure \\
+CWE directories & 10 & 10 \\
+Clones per directory & 12 & 12 \\
+File naming & \texttt{fp\_N.py} & \texttt{fp\_N.py} \\
+Distinct messages & 10 & 10 \\
+Distinct rules & 10 & 10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Of the \RNfp{} alerts in the replacement, \CFpSecure{} come from those generated
+clones. The remaining \CFpPatched{} come from \texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}Patched},
+whose files are hand-written and genuinely varied: and which were also written
+locally rather than obtained from a third party. So the honest count of the
+negative class is \CFpPatched{} alerts on code we wrote ourselves, and
+\CFpSecure{} on code we generated for the purpose.
+
+Every triager comparison in this paper is therefore a comparison on a generated
+negative class. We report the numbers because they are correct measurements of
+what was actually scanned, and because withholding them would leave the failure
+undocumented. They are not a benchmark result and must not be cited as one.
+
+%% ===========================================================================
+\section{Why It Happened Twice}
+\label{sec:whytwice}
+
+The interesting question is not that a benchmark was fabricated. It is that the
+team that discovered the fabrication, wrote a paper about it, and built a
+correction, produced the same artefact again. Three conditions made that
+possible, and all three are general.
+
+\paragraph{Provenance is asserted in prose and recorded nowhere.}
+The scan script states in its own docstring that
+``SecurityEval co san hai thu muc code AN TOAN'' and that any alert on them is a
+false positive because the benchmark's authors vouch for the code. Nothing
+downstream checks that. The alert records carry a \texttt{source} field naming
+the directory, and that field was faithfully propagated through every later
+stage, which made the provenance feel documented when only its label was. A
+provenance claim that no artefact can falsify is a comment, not a record.
+
+\paragraph{A generated directory inside a checkout looks like part of it.}
+Once \texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}FP} sat next to
+\texttt{Testcases\_\allowbreak{}Insecure\_\allowbreak{}Code} under \texttt{repos/\allowbreak{}SecurityEval/}, every path
+in every log read as upstream material. Nothing in the pipeline distinguishes a
+directory that arrived with \texttt{git clone} from one written afterwards, and
+neither did we. Checking costs one command --- \texttt{git status} would have
+listed both directories as untracked from the moment they appeared.
+
+\paragraph{The diversity check we proposed does not separate the two classes.}
+Section~\ref{sec:diversity} reports the negative class as \CMsgFp{} message
+templates over \RNfp{} alerts, a multiplicity of \CMultFp{}. The fabricated class
+was \(120\) records over \(10\) templates, \(12.00\). We had written that ratio
+up as the honest consequence of scanning a synthetic corpus. A threshold that
+rejects the first rejects the second, and one that accepts the second accepts the
+first. The statistic we offered as a safeguard would have passed the fabricated
+class, and our own low reading of it was the clue we explained away.
+
+\paragraph{What we would require instead.}
+Provenance has to be a property of the artefact, verifiable without trusting the
+text. Three checks would each have caught this on their own: record the upstream
+commit hash and assert that every scanned path is tracked at that commit; store,
+per class, whether its files came from a clone, from an annotator, or from a
+generator, and refuse to build an evaluation set from a class whose provenance is
+unrecorded; and treat any directory whose file sizes are near-constant and whose
+names are an index sequence as generated until shown otherwise. None of these
+requires domain knowledge. All three are cheaper than the audit that eventually
+caught us, which began only because an outside reviewer asked where the secure
+code came from.
+
+%% ===========================================================================
+\section{What the Reconstructed Inventory Contains}
+\label{sec:inventory}
+
+Before any classifier is run it is worth stating precisely what the two classes
+are made of, because two properties of the inventory bound what any result on it
+can mean. Both properties are read directly off the two alert files and involve
+no modelling choice.
+
+\subsection{Rule identifiers overlap heavily between the classes}
+
+The \CNall{} alerts carry \CNtpRules{} distinct rule identifiers on the
+true-positive side and \CNfpRules{} on the false-positive side, and
+\CNshared{} identifiers occur on both. That overlap is not marginal.
+\CFpOnShared{} of the \RNfp{} false positives (\CFpOnSharedPct\%) and
+\CTpOnShared{} of the \RNtp{} true positives (\CTpOnSharedPct\%) sit on a rule
+that also produces alerts of the other class, so for roughly half the positives
+and nine tenths of the negatives the rule identifier carries no class
+information at all.
+
+Table~\ref{tab:ruleoverlap} lists the shared identifiers with their counts in
+each class. The imbalance within a rule varies by almost two orders of
+magnitude: \texttt{py/\allowbreak{}reflective-\allowbreak{}xss} is overwhelmingly a true positive in this
+corpus (7 against 1), while \texttt{py/\allowbreak{}bind-\allowbreak{}socket-\allowbreak{}all-\allowbreak{}network-\allowbreak{}interfaces},
+\texttt{py/\allowbreak{}incomplete-\allowbreak{}hostname-\allowbreak{}regexp} and
+\texttt{py/\allowbreak{}request-\allowbreak{}without-\allowbreak{}cert-\allowbreak{}validation} are overwhelmingly false positives
+(1 against 12 each). A triager that learned a per-rule prior would therefore be
+right about some rules and badly wrong about others, which is the quantitative
+version of the qualitative claim that alert triage cannot be reduced to a rule
+allow-list.
+
+\begin{table}[t]
+\centering
+\caption{Rule identifiers that produce alerts in both classes. \textbf{TP} and
+\textbf{FP} are counts in the reconstructed inventory; the last column is their
+ratio. Read from \texttt{pilot/\allowbreak{}alerts.\allowbreak{}csv} and
+\texttt{real\_\allowbreak{}fp/\allowbreak{}real\_\allowbreak{}fp\_\allowbreak{}alerts.\allowbreak{}json}.}
+\label{tab:ruleoverlap}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Rule identifier & TP & FP & FP/TP \\
+\midrule
+\texttt{py/\allowbreak{}url-\allowbreak{}redirection} & 4 & 15 & 3.75 \\
+\texttt{py/\allowbreak{}path-\allowbreak{}injection} & 6 & 14 & 2.33 \\
+\texttt{py/\allowbreak{}code-\allowbreak{}injection} & 2 & 12 & 6.00 \\
+\texttt{py/\allowbreak{}command-\allowbreak{}line-\allowbreak{}injection} & 2 & 12 & 6.00 \\
+\texttt{py/\allowbreak{}insecure-\allowbreak{}temporary-\allowbreak{}file} & 2 & 12 & 6.00 \\
+\texttt{py/\allowbreak{}weak-\allowbreak{}crypto-\allowbreak{}key} & 2 & 12 & 6.00 \\
+\texttt{py/\allowbreak{}bind-\allowbreak{}socket-\allowbreak{}all-\allowbreak{}network-\allowbreak{}interfaces} & 1 & 12 & 12.00 \\
+\texttt{py/\allowbreak{}incomplete-\allowbreak{}hostname-\allowbreak{}regexp} & 1 & 12 & 12.00 \\
+\texttt{py/\allowbreak{}request-\allowbreak{}without-\allowbreak{}cert-\allowbreak{}validation} & 1 & 12 & 12.00 \\
+\texttt{py/\allowbreak{}reflective-\allowbreak{}xss} & 7 & 1 & 0.14 \\
+\texttt{py/\allowbreak{}stack-\allowbreak{}trace-\allowbreak{}exposure} & 1 & 1 & 1.00 \\
+\midrule
+Total on shared rules & \CTpOnShared & \CFpOnShared & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The CWE directory is a near-perfect label, and the classifier does
+not see it}
+\label{sec:cweleak}
+
+A third shortcut is worth documenting because it is the kind that silently
+inflates published numbers, and because in this case we can show it was not
+taken.
+
+The corpus is organised one directory per CWE category, so every alert's
+relative path begins with a group name. Table~\ref{tab:cwe} gives the
+distribution. The positive class spans \DCweTp{} CWE groups and the negative
+class only \DCweFp{}, of which \DCweBoth{} carry both classes. That leaves
+\DCweOnlyTp{} groups (holding \DTpOnOnly{} of the \RNtp{} true positives,
+\DTpOnOnlyPct\% of the positive class) in which no false positive occurs at
+all. A feature that revealed the directory would therefore label
+\DTpOnOnlyPct\% of the positives with certainty, and one group
+(\texttt{CWE-089}) would label its \(12\) alerts as negatives with equal
+certainty. A model given the path would score very well and would have learned
+nothing about alert triage.
+
+We can rule this out by inspection rather than by argument, because the feature
+construction is explicit: both TF-IDF variants are built from
+\texttt{rule\_id} concatenated with the alert message, or from the message
+alone. The relative path is carried in the inventory, used for the heuristic's
+path-keyword clause (Section~\ref{sec:heurwhy}), and never given to the
+learned model. That is why we report the feature text verbatim rather than
+describing it: a reader checking whether our numbers are a directory artefact
+needs to see the exact string that was vectorised, and no summary of it will
+do.
+
+The general point is that a corpus organised by vulnerability class hands every
+model trained on it a label-shaped feature, and the organisation is usually
+inherited from the benchmark rather than chosen by the person running the
+experiment. Whether it leaks depends entirely on which fields reach the
+vectoriser, which is a one-line detail that papers routinely omit.
+
+\begin{table}[t]
+\centering
+\caption{Alerts per CWE group. The \DCweOnlyTp{} groups summarised in the last
+row contain \DTpOnOnly{} true positives and no false positive, so the directory
+name alone would settle \DTpOnOnlyPct\% of the positive class.}
+\label{tab:cwe}
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+CWE group & TP & FP \\
+\midrule
+\texttt{CWE-020} & 7 & 14 \\
+\texttt{CWE-022} & 3 & 14 \\
+\texttt{CWE-094} & 2 & 13 \\
+\texttt{CWE-601} & 2 & 13 \\
+\texttt{CWE-326} & 2 & 12 \\
+\texttt{CWE-078} & 1 & 12 \\
+\texttt{CWE-295} & 1 & 12 \\
+\texttt{CWE-377} & 1 & 12 \\
+\texttt{CWE-605} & 1 & 12 \\
+\texttt{CWE-089} & 0 & 12 \\
+\texttt{CWE-502} & 1 & 1 \\
+\midrule
+22 further groups & 38 & 0 \\
+\midrule
+Total & \RNtp & \RNfp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The negative class is far less textually diverse than the positive}
+\label{sec:diversity}
+
+The second property is an asymmetry we did not design for and that materially
+affects how the classifier results should be read. The \RNtp{} true positives
+carry \CMsgTp{} distinct alert messages, an average of \CMultTp{} alerts per
+message template. The \RNfp{} false positives carry only \CMsgFp{} distinct
+messages for \RNfp{} alerts, an average of \CMultFp{}. Table~\ref{tab:fptmpl}
+gives the full template inventory of the negative class; ten of the twelve
+templates account for twelve or more alerts each.
+
+The cause is mechanical. The false positives were harvested by running the same
+query suite over a corpus of secure variants organised one directory per CWE,
+with several near-identical files per directory
+(\CFpSecure{} alerts from the secure corpus and \CFpPatched{} from the patched
+variants). Each query emits its message with the same wording every time it
+fires, so a directory of twelve structurally similar secure files yields twelve
+copies of one template. Nothing about that is wrong as a way to obtain real
+false positives --- these are genuine alerts that CodeQL genuinely raised on
+code that is genuinely not vulnerable: but it does mean the negative class is
+close to twelve repeated strings rather than \RNfp{} independent observations.
+
+We return to the consequence in Section~\ref{sec:limitations}: it is the single
+largest threat to the TF-IDF result reported next, and it is the reason we do
+not present that result as evidence that lexical triage generalises.
+
+\begin{table}[t]
+\centering
+\caption{Message templates of the negative class, with the number of alerts each
+accounts for. Twelve templates cover all \RNfp{} false positives.}
+\label{tab:fptmpl}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}r>{\raggedright\arraybackslash}p{0.86\linewidth}@{}}
+\toprule
+$n$ & Alert message template \\
+\midrule
+15 & Untrusted URL redirection depends on a [user-provided value](1). \\
+14 & This path depends on a [user-provided value](1). \\
+12 & Binding a socket to all interfaces (using [''](1)) is a security risk. \\
+12 & This regular expression has an unescaped '.' before 'example.com', so it mi... \\
+12 & This command line depends on a [user-provided value](1). \\
+12 & This SQL query depends on a [user-provided value](1). \\
+12 & This code execution depends on a [user-provided value](1). \\
+12 & Creation of an RSA key uses [1024](1) bits, which is below 2048 and conside... \\
+12 & Call to deprecated function tempfile.mktemp may be insecure. \\
+12 & This request may run without certificate validation because [it is disabled... \\
+1 & Cross-site scripting vulnerability due to a [user-provided value](1). \\
+1 & [Stack trace information](1) flows to this location and may be exposed to a... \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ===========================================================================
+\section{Results on the Rebuilt Benchmark}
+\label{sec:realresults}
+
+From the \RNtp{} true and \RNfp{} false positives we build two evaluation sets.
+The balanced set uses every true positive and an equal number of false
+positives, \RNbal{} alerts. The imbalanced set uses every false positive and
+subsamples true positives to a ratio of $1{:}\RImbRatio$, \RNimb{} alerts,
+which is closer to what a developer sees. Each set therefore exhausts whichever
+class limits it, rather than being capped at a round number.
+
+Four triagers are compared: accepting every alert, a hand-written regex
+heuristic, TF-IDF with a Random Forest over \texttt{rule\_id} and message, and
+the same model over the message alone. Matthews correlation is reported with a
+percentile bootstrap over \RBoot{} resamples, and pairs are compared with an
+exact McNemar test on the identical alert set.
+
+\begin{table*}[t]
+\caption{Balanced set, \RNbal{} alerts. Confusion is TP/FP/TN/FN. Burden is
+$\mathrm{FP} + 50\,\mathrm{FN}$, the cost model of
+Section~\ref{sec:metrics}.}
+\label{tab:realbal}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrlrrlr}
+\toprule
+Triager & $n$ & TP/FP/TN/FN & Acc. & MCC & 95\% CI & $B_{\mathrm{dev}}$ \\
+\midrule
+Accept all & 118 & 59/59/0/0 & 0.5000 & 0.0000 & [0.000, 0.000] & 59 \\
+Regex heuristic & 118 & 52/44/15/7 & 0.5678 & 0.1741 & [-0.009, 0.343] & 394 \\
+TF-IDF + RF & 118 & 35/6/53/24 & 0.7458 & 0.5161 & [0.364, 0.657] & 1206 \\
+TF-IDF, message only & 118 & 36/6/53/23 & 0.7542 & 0.5310 & [0.381, 0.669] & 1156 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\caption{Imbalanced set, \RNimb{} alerts at $1{:}\RImbRatio$.}
+\label{tab:realimb}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrlrrlr}
+\toprule
+Triager & $n$ & TP/FP/TN/FN & Acc. & MCC & 95\% CI & $B_{\mathrm{dev}}$ \\
+\midrule
+Accept all & 148 & 21/127/0/0 & 0.1419 & 0.0000 & [0.000, 0.000] & 127 \\
+Regex heuristic & 148 & 17/102/25/4 & 0.2838 & 0.0056 & [-0.165, 0.152] & 302 \\
+TF-IDF + RF & 148 & 6/1/126/15 & 0.8919 & 0.4567 & [0.210, 0.644] & 751 \\
+TF-IDF, message only & 148 & 5/1/126/16 & 0.8851 & 0.4073 & [0.147, 0.605] & 801 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_mcc.pdf}
+\caption{Matthews correlation with 95\% bootstrap intervals. Only the two
+TF-IDF variants separate from zero, on either prevalence.}
+\label{fig:mcc}
+\end{figure*}
+
+\subsection{The lexical model separates the classes; the heuristic does not}
+\label{sec:sep}
+
+On the balanced set the TF-IDF classifier reaches
+$\mathrm{MCC} = \RTfidfBalMcc$ with a bootstrap interval of
+$[\RTfidfBalLo, \RTfidfBalHi]$, while the regex heuristic reaches
+$\RHeurBalMcc$ with an interval of $[\RHeurBalLo, \RHeurBalHi]$: an interval
+that contains zero. On the imbalanced set (Table~\ref{tab:realimb}) the gap widens:
+$\RTfidfImbMcc$ against $\RHeurImbMcc$, whose interval again contains zero. Paired McNemar
+separates the two decisively on both sets
+(balanced $p = \RHeurVsTfidf$, imbalanced $p = \RHeurVsTfidfImb$).
+Figure~\ref{fig:mcc} shows both regimes with their intervals.
+
+The practical reading is that the alert message carries enough lexical signal
+to be worth exploiting, and that a hand-written pattern list does not capture
+it. That is a modest claim, but it is the one the data support, and it is the
+baseline any learned or LLM-based triager has to clear.
+
+\subsection{Why the heuristic baseline fails, clause by clause}
+\label{sec:heurwhy}
+
+The regex heuristic is the baseline the literature's hand-written filters
+stand in for, and its near-zero MCC deserves an explanation rather than a
+shrug. Because the heuristic is deterministic and reads only the rule
+identifier, the message and the file path, we can attribute every one of its
+decisions over the whole inventory to the clause that produced it. No sampling
+is involved, so unlike the benchmark results this attribution is exact.
+
+Table~\ref{tab:heurclause} gives the attribution. Two facts explain the
+outcome. First, the path-keyword clause --- which rejects any alert whose path
+contains \texttt{test}, \texttt{example}, \texttt{mock} or \texttt{sample},
+and which in a real repository would do most of the filtering: fires
+\CPathClauseTp{} times on true positives and \CPathClauseFp{} times on false
+positives, that is, never. The corpus names its files by CWE and index rather
+than by role, so the clause has nothing to match. Second, the fall-through
+default is \emph{accept}, and it catches 45 of \RNtp{} true positives and 90 of
+\RNfp{} false positives. The heuristic therefore behaves, on this inventory,
+almost exactly like accept-all with a small hedge-word carve-out: the hedge
+clause rejects \CHedgeTp{} true positives and \CHedgeFp{} false positives, a
+ratio of roughly one to four, which is the only discrimination the whole filter
+achieves.
+
+Over the complete inventory --- all \RNtp{} true and all \RNfp{} false
+positives, with no subsampling --- the heuristic accepts \CHeurFullTP{} of
+\RNtp{} true positives (\CHeurAccTpPct\%) and \CHeurFullFP{} of \RNfp{} false
+positives (\CHeurAccFpPct\%), giving
+$\mathrm{MCC} = \CHeurFullMcc$ against $\CAllPrec$ precision for accept-all on
+the same inventory. That number is not the benchmark result and we do not
+report it as one; it is a property of the filter and the corpus, and it is the
+mechanism behind the benchmark result.
+
+The general lesson is not that regex filters are useless. It is that a filter
+whose discriminating clauses key on repository conventions --- directory names,
+test markers, vendor paths --- transfers nothing to a corpus that does not
+follow those conventions, and a benchmark built from a synthetic corpus will
+therefore understate such a filter's field performance while overstating the
+margin any learned model holds over it. Both directions of that bias are worth
+naming.
+
+\begin{table}[t]
+\centering
+\caption{Which clause of the regex heuristic decides each alert, over the whole
+inventory. The path-keyword clause never fires on this corpus.}
+\label{tab:heurclause}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Clause & Verdict & TP & FP \\
+\midrule
+\texttt{path-keyword} & reject & 0 & 0 \\
+\texttt{rule-keyword} & accept & 7 & 12 \\
+\texttt{hedge-word} & reject & 7 & 25 \\
+\texttt{default} & accept & 45 & 90 \\
+\midrule
+Total & & \RNtp & \RNfp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dropping the rule identifier changes nothing}
+
+The classifier trained on the message alone reaches $\RMsgBalMcc$ on the
+balanced set against $\RTfidfBalMcc$ for the version that also sees
+\texttt{rule\_id}, and $\RMsgImbMcc$ against $\RTfidfImbMcc$ on the imbalanced
+set. Paired McNemar finds no difference on either
+($p = \RMsgSame$ and $p = \RMsgSameImb$; the two disagree on at most one alert).
+
+This settles the shortcut question raised in Section~\ref{sec:fabricated}. The
+model is not recovering the class from the rule identifier, because removing
+the identifier entirely leaves its decisions unchanged. What it uses is the
+message text.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_burden.pdf}
+\caption{Recall against developer burden, log scale. The fifty-fold penalty on
+misses puts accept-all at the bottom of both curves.}
+\label{fig:burden}
+\end{figure}
+
+\subsection{The cost model makes accepting everything optimal}
+
+Table~\ref{tab:realbal} contains a result that is awkward for the metric rather
+than for any triager. Accepting every alert scores
+$\mathrm{MCC} = \RAllBalMcc$ by construction: it never discriminates --- yet
+its developer burden is $\RAllBalBur$, the \emph{lowest} of the four, against
+$\RTfidfBalBur$ for the classifier with the highest MCC. The same inversion
+holds on the imbalanced set, $\RAllImbBur$ against $\RTfidfImbBur$.
+Figure~\ref{fig:burden} plots the trade-off: burden falls monotonically with
+recall, which is the opposite of what a triage metric should reward.
+
+The cause is the weighting. A burden of
+$\mathrm{FP} + 50\,\mathrm{FN}$ penalises a missed vulnerability fifty times
+more than a wasted review, so a triager that never rejects anything incurs no
+false negatives and therefore no fifty-fold penalty. Under that cost model
+accepting every alert is not merely competitive, it is unbeatable, and no
+amount of classifier quality can overcome it.
+
+We report this rather than quietly re-weighting, because the same cost model
+appears in the surrounding literature and the same inversion will appear
+wherever it is used with a large enough false-negative multiplier. A burden
+metric is only informative if the multiplier is small enough that discrimination
+can pay for itself; otherwise the honest summary is that the metric has already
+chosen the answer. Choosing the multiplier is a deployment decision, and it
+should be stated and justified rather than inherited.
+
+\subsection{All pairwise comparisons, both prevalences}
+\label{sec:allpairs}
+
+Section~\ref{sec:realresults} quotes the two McNemar tests that carry the
+argument. For completeness Table~\ref{tab:mcnfull} gives all six pairwise tests
+on each set, with the discordant counts $b$ and $c$ that the exact test is
+computed from. Reporting the counts matters because a $p$-value on 118 or 148
+paired decisions is easy to over-read: the two TF-IDF variants, for instance,
+differ on a single alert out of \RNbal{} on the balanced set and one out of
+\RNimb{} on the imbalanced set, which is why their $p$-values are exactly
+$1$ and why we treat them as one method rather than two.
+
+Three groupings emerge and they are consistent across prevalences. Accept-all
+and the heuristic are not separated on the balanced set
+($b=7$, $c=15$, $p=0.1338$) and are separated on the imbalanced set only
+because the heuristic's hedge clause rejects enough of the now-dominant
+negatives to register. Both TF-IDF variants separate from both of them on both
+sets, most sharply on the imbalanced set where the discordant counts are
+lopsided by an order of magnitude ($15$ against $126$, and $11$ against
+$101$). And the two TF-IDF variants do not separate from each other anywhere.
+The ordering of the four triagers is therefore stable under a change of
+prevalence, even though every individual metric value moves.
+
+\begin{table*}[t]
+\centering
+\caption{Exact McNemar tests for all pairs of triagers on both evaluation sets.
+$b$ is the number of alerts the first method gets right and the second wrong,
+$c$ the reverse. Computed by \texttt{fix2\_\allowbreak{}rebuild\_\allowbreak{}and\_\allowbreak{}triage.\allowbreak{}py} and read
+from \texttt{real\_\allowbreak{}eval/\allowbreak{}real\_\allowbreak{}eval\_\allowbreak{}results.\allowbreak{}json}.}
+\label{tab:mcnfull}
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lllrrr@{}}
+\toprule
+Set & Method A & Method B & $b$ & $c$ & $p$ \\
+\midrule
+Balanced & Accept-all & Heuristic & 7 & 15 & 0.1338 \\
+Balanced & Accept-all & TF-IDF+RF & 24 & 53 & 0.0013 \\
+Balanced & Accept-all & TF-IDF msg & 23 & 53 & \ensuremath{7.65\times 10^{-4}} \\
+Balanced & Heuristic & TF-IDF+RF & 21 & 42 & 0.0111 \\
+Balanced & Heuristic & TF-IDF msg & 20 & 42 & 0.0071 \\
+Balanced & TF-IDF+RF & TF-IDF msg & 0 & 1 & 1.0000 \\
+Imbalanced & Accept-all & Heuristic & 4 & 25 & \ensuremath{1.04\times 10^{-4}} \\
+Imbalanced & Accept-all & TF-IDF+RF & 15 & 126 & \ensuremath{4.97\times 10^{-23}} \\
+Imbalanced & Accept-all & TF-IDF msg & 16 & 126 & \ensuremath{2.23\times 10^{-22}} \\
+Imbalanced & Heuristic & TF-IDF+RF & 11 & 101 & \ensuremath{2.26\times 10^{-19}} \\
+Imbalanced & Heuristic & TF-IDF msg & 12 & 101 & \ensuremath{1.08\times 10^{-18}} \\
+Imbalanced & TF-IDF+RF & TF-IDF msg & 1 & 0 & 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{What is not yet measured}
+\label{sec:notyet}
+
+The LLM arm has not been run on the rebuilt benchmark. The earlier version of
+this paper reported LLM accuracy, cost, latency, calibration, context-window
+ablation and explanation quality on the original evaluation set, whose negative
+class we have just shown was fabricated. Those numbers do not transfer and we
+have withdrawn them rather than reprint them beside the corrected benchmark.
+
+What that leaves is a comparison among three non-LLM triagers plus an
+accept-all control, on a benchmark whose both classes are real. We regard this
+as the necessary first step rather than the finished study: the baseline the
+LLM must clear is now established and measured, and the LLM measurement against
+it is the immediate next experiment.
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Why a synthetic negative class is not a conservative shortcut}
+The intuition behind generating false positives is that they are a nuisance
+class: the classifier's job is to reject them, so their internal diversity
+should not matter much. The intuition is wrong in a specific way. A triager is
+scored on how well it separates two populations, and if one of them is a single
+point then the measured separation is a property of the generator, not of the
+triager. It does not make the benchmark harder or easier in a way that can be
+corrected for afterwards; it makes the number meaningless. The only repair is to
+obtain the negative class the same way the positive class was obtained, by
+running the analyser and reading what it reports.
+
+The repair is also cheap. Corpora built for secure-coding evaluation already
+ship safe implementations, and every alert an analyser raises on them is a false
+positive by construction, with no annotation effort at all. We see no reason for
+a triage benchmark to synthesise its negatives.
+
+\subsection{What the corrected numbers support, and what they do not}
+On the rebuilt benchmark the honest statement is narrow. The alert message
+carries lexical signal that a Random Forest can exploit,
+$\mathrm{MCC} = \RTfidfBalMcc$ on the balanced set against $\RHeurBalMcc$ for a
+hand-written pattern list whose interval contains zero. That is a real
+difference, paired $p = \RHeurVsTfidf$, and it widens under imbalance. It is
+also the full extent of the claim: we have shown that a cheap lexical model
+beats a cheap hand-written one, not that either is fit for deployment.
+
+The recall figures make the second half of that sentence concrete. The
+classifier recovers $35$ of \RNtp{} true positives on the balanced set and $6$
+of $21$ on the imbalanced one. A triager that silently discards two-thirds of
+the vulnerabilities it is shown is not a triager a security team can adopt,
+whatever its MCC. Bag-of-words separation and usable triage are different
+targets, and this benchmark currently measures only the first.
+
+\subsection{A burden metric can decide the comparison before it starts}
+The developer-burden result is the one we expect to generalise beyond this
+paper. With a fifty-fold penalty on missed true positives, accept-all is
+unbeatable by construction: it has no false negatives, so it pays no penalty,
+and every discriminating triager pays a penalty that no reduction in review
+volume can offset. The metric has chosen its winner before any system runs.
+
+This is not an argument against cost-weighted evaluation, which is the right
+frame for triage. It is an argument that the multiplier is a deployment
+parameter and has to be stated, justified, and varied. A multiplier small enough
+that discrimination can pay for itself yields an informative ranking; one large
+enough to dominate yields a tautology. Reporting the ranking at a single
+inherited multiplier hides which of the two you are in.
+
+\subsection{Reporting practice}
+Three habits would make this literature easier to check. Report how the negative
+class was obtained, in the same detail as the positive class, including the
+number of distinct alert messages it contains. Report a term-frequency baseline,
+which is a few lines of scikit-learn and separates a claim about language
+understanding from a claim about lexical classification. Report prevalence
+prominently and evaluate at more than one value of it, since it changes the
+ranking and not merely the magnitudes.
+
+%% ===========================================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\emph{The LLM comparison is absent.} The question in our earlier title, whether
+a language model beats a bag of words, is not answered here. The arm was not
+re-run on the rebuilt benchmark, and the numbers from the fabricated one are
+withdrawn rather than carried forward. The baseline that arm must clear is now
+established, which is the prerequisite for the measurement, not a substitute
+for it.
+
+\emph{Small benchmarks.} \RNbal\ and \RNimb\ alerts. The bootstrap intervals are
+correspondingly wide, which is why the heuristic's interval containing zero is
+reported as a null result rather than as a small win.
+
+\emph{Template multiplicity is the largest threat to the TF-IDF result.}
+This is the limitation we want read before the headline number, because it
+bounds what that number means. As Section~\ref{sec:diversity} measures, the
+negative class contains \CMsgFp{} distinct message templates across \RNfp{}
+alerts, a multiplicity of \CMultFp{}, against \CMultTp{} on the positive side.
+The classifier is evaluated by \(5\)-fold stratified cross-validation, so for
+any template with twelve or more instances: ten of the \CMsgFp{} templates
+qualify --- instances of that same template are present in the training folds
+whenever it appears in a test fold. A bag-of-words model can then score a test
+alert by recognising a string it has already seen labelled, which is a much
+easier problem than the one a deployed triager faces.
+
+We therefore do not claim that $\mathrm{MCC} = \RTfidfBalMcc$ estimates how a
+lexical triager would perform on unseen alerts. The defensible reading is
+narrower and still useful: on a benchmark whose negative class is real rather
+than fabricated, the message text is separable and a hand-written pattern list
+does not separate it, so any triager that claims credit must at minimum beat a
+lexical model rather than only the regex filter. Turning the number into a
+generalisation estimate requires grouped cross-validation that holds whole
+templates out, or a second corpus, and we have run neither. We note that the
+grouped design would leave at most \CMsgFp{} negative groups, which is too few
+to support a stable estimate: so the honest conclusion is that this corpus
+cannot answer the generalisation question at all, and a larger negative corpus
+is the prerequisite rather than a refinement.
+
+\emph{The negative class comes from one corpus.} Every false positive is a
+CodeQL alert on SecurityEval's secure directories, \RNrulesFp{} rules and
+\RNmsgFp{} distinct messages, harvested as \CFpSecure{} alerts from the secure
+variants and \CFpPatched{} from the patched ones. That is a genuine negative
+class, but it is not a diverse one, and a benchmark drawn from a second corpus
+would test whether the lexical signal we measure survives a change of source.
+
+\emph{The heuristic is penalised by the corpus, not only by its design.}
+Section~\ref{sec:heurwhy} shows its path-keyword clause never fires here,
+because the corpus names files by CWE index rather than by role. In a real
+repository that clause would carry much of the filter's weight. The heuristic's
+\CHeurFullMcc{} on this inventory is therefore a lower bound on what the same
+filter would achieve in the field, and correspondingly the margin we report for
+the lexical model over it is an upper bound. Neither bound is tight and we do
+not know how loose either is.
+
+\emph{The corpus layout is a latent leak for any future arm.} We verify in
+Section~\ref{sec:cweleak} that the CWE directory does not reach the two TF-IDF
+variants. That verification does not extend to the LLM arm that
+Section~\ref{sec:notyet} leaves unrun: a language model prompted with a file
+path, a code excerpt, or anything else that carries the directory name would
+have access to a feature that settles \DTpOnOnlyPct\% of the positive class.
+Whoever runs that arm has to state which fields the prompt contains, and the
+result is uninterpretable without it.
+
+\emph{One language, one analyser.} Python, CodeQL. C/C++ with its different
+false-positive profile, and other analysers, are untested.
+
+\emph{Labels from limited annotation.} True positives come from manual
+inspection of the flagged flows; false positives are labelled by construction
+from the secure corpus. We report no inter-annotator agreement statistic because
+the annotation was not run redundantly, and we make no claim that would require
+one.
+
+\emph{The burden model is a model.} $B_{\mathrm{dev}}$ embeds a chosen penalty
+for missed true positives, and Section~\ref{sec:realresults} shows the ranking
+is not robust to that choice. The burden columns are not portable to a team with
+a different miss cost.
+
+%% ===========================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+The false-positive half of our earlier evaluation set was ten template
+messages, each cloned twelve times. Every triage comparison drawn on it is
+withdrawn.
+
+We then rebuilt it, and rebuilt the same thing. \CFpSecure{} of the \RNfp{}
+alerts in the replacement come from ten directories of twelve near-identical
+files generated inside our own checkout, carrying the same
+\texttt{fp\_N.py} naming and the same ten messages as the class they replaced.
+The remaining \CFpPatched{} come from hand-written files, also ours. No part of
+the negative class came from a third party, and the upstream benchmark we
+credited ships no secure code at all.
+
+On that inventory a TF-IDF Random Forest reaches
+$\mathrm{MCC} = \RTfidfBalMcc$ where a regex heuristic reaches $\RHeurBalMcc$
+with an interval containing zero, and under the burden metric the field commonly
+uses, accepting every alert beats every triager. Those are correct measurements
+of what was scanned and they are not benchmark results. We withdraw them as we
+withdrew the first set.
+
+What we are left with is a mechanism rather than a number. A provenance claim
+that lives only in a docstring, a generated directory that becomes indistinguishable
+from upstream material once it is inside the checkout, and a diversity statistic
+that scores the forgery and the replacement alike: each is ordinary, and together
+they were enough to make a team that had just written about fabricated data
+fabricate it again. The checks in Section~\ref{sec:whytwice} are the ones we now
+apply, and we would rather publish them with this history attached than publish
+the benchmark result we thought we had.
+
+%% ===========================================================================
+\appendix
+
+\section{Reproduction}
+\label{app:repro}
+
+Every number in this paper is produced by running the scripts below against the
+result files below. Nothing is transcribed by hand, and the check at the end of
+this appendix is the one we use to verify that claim.
+
+\subsection{Inputs}
+
+Table~\ref{tab:inputs} lists them.
+
+\begin{table}[h]
+\centering
+\caption{Result files this paper reads. Sizes are of the released artefacts.}
+\label{tab:inputs}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.50\linewidth}>{\raggedright\arraybackslash}p{0.42\linewidth}@{}}
+\toprule
+Path under \texttt{results/} & Contents \\
+\midrule
+\texttt{pilot/\allowbreak{}alerts.\allowbreak{}csv} &
+  the \RNtp{} true-positive alerts: rule, message, file, line \\
+\texttt{real\_\allowbreak{}fp/\allowbreak{}real\_\allowbreak{}fp\_\allowbreak{}alerts.\allowbreak{}json} &
+  the \RNfp{} false-positive alerts, with the source corpus of each \\
+\texttt{real\_\allowbreak{}fp/\allowbreak{}secure\_\allowbreak{}fp.\allowbreak{}sarif} &
+  the raw CodeQL SARIF output the false positives were extracted from \\
+\texttt{real\_\allowbreak{}eval/\allowbreak{}real\_\allowbreak{}eval\_\allowbreak{}results.\allowbreak{}json} &
+  per-triager confusion counts, bootstrap MCC intervals, burden, and the
+  \(12\) pairwise McNemar tests \\
+\texttt{audit/\allowbreak{}audit\_\allowbreak{}results.\allowbreak{}json} &
+  the \Nrubric{} explanation-rubric items and \Nprobe{} contamination probes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Pipeline}
+
+Three stages, in order. The first consumes the corpus and produces the alert
+inventory; the second consumes the inventory and produces the metrics; the third
+consumes the metrics and produces this document.
+
+\begin{enumerate}
+\item \texttt{fix1\_\allowbreak{}real\_\allowbreak{}fp\_\allowbreak{}scan.\allowbreak{}py} runs the
+\texttt{python-\allowbreak{}security-\allowbreak{}extended} query suite over two directories inside our
+\texttt{SecurityEval} checkout, \texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}FP} and
+\texttt{Testcases\_\allowbreak{}Secure\_\allowbreak{}Patched}, and writes every alert to
+\texttt{real\_\allowbreak{}fp/\allowbreak{}real\_\allowbreak{}fp\_\allowbreak{}alerts.\allowbreak{}json} with the SARIF it came from. Its
+docstring asserts that the benchmark's authors certify both directories as
+secure. They do not exist upstream, and nobody certifies them. The script is
+released unmodified, because the gap between what it claims and what it does is
+the subject of this paper.
+
+\item \texttt{fix2\_\allowbreak{}rebuild\_\allowbreak{}and\_\allowbreak{}triage.\allowbreak{}py} builds the two evaluation sets,
+runs the four triagers, and writes
+\texttt{real\_\allowbreak{}eval/\allowbreak{}real\_\allowbreak{}eval\_\allowbreak{}results.\allowbreak{}json}. It fixes the random seed to
+\(42\); both the balanced set's choice of which false positives to keep and the
+cross-validation folds derive from that seed.
+
+\item \texttt{make\_tables.py} then \texttt{build.py} read the result files and
+emit every macro, table row and figure used here. The composition and
+clause-attribution analyses of Sections~\ref{sec:inventory}
+and~\ref{sec:heurwhy} are computed in this stage directly from the two alert
+files, and involve no sampling, so they are exact rather than seed-dependent.
+\end{enumerate}
+
+\subsection{What is and is not seed-dependent}
+
+The distinction matters for anyone re-running this. The confusion counts,
+bootstrap intervals, burden figures and McNemar tests of
+Section~\ref{sec:realresults} all depend on the seed, through the balanced
+set's subsample and the cross-validation split. The inventory composition of
+Section~\ref{sec:inventory} and the clause attribution of
+Section~\ref{sec:heurwhy} depend on neither: they are functions of the two
+alert files alone and will reproduce bit-for-bit from any environment that can
+read JSON and CSV.
+
+\subsection{Verification}
+
+We check the substitution rather than trust it. \texttt{make\_tables.py} writes
+every macro from a computed value, and \texttt{build.py} refuses to emit
+\texttt{main.tex} if a \texttt{\%\%MACROS\%\%} or \texttt{\%\%ROWS:\%\%} marker
+has no corresponding generated file. A number that appears in the text without a
+macro behind it is therefore a number we typed, and the only such numbers in
+this paper are the two structural constants stated in prose: the \(5\) folds of
+the cross-validation and the \(50\times\) multiplier of the burden metric, both
+of which are choices rather than measurements.
+
+
+\section*{Declaration of competing interest}
+
+The authors declare that they have no known competing financial interests or
+personal relationships that could have appeared to influence the work reported
+in this paper.
+
+
+\section*{Data availability}
+
+The measured result files, the generator scripts that read them, and the LaTeX
+sources that substitute their output into this document are released with the
+paper. Every number, table and figure here is produced by running those scripts
+against those files; none is transcribed by hand.
+
+The artefact (result files, generator scripts and \LaTeX{} sources) is not
+publicly posted at the time of submission. We will deposit it in a public
+repository under a persistent identifier upon acceptance, and we can supply it
+to the editorial office at any point during review.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}

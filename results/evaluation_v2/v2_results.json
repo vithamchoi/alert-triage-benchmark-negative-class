@@ -1,0 +1,350 @@
+{
+  "dataset_sizes": {
+    "jisa_balanced": {
+      "tp": 20,
+      "fp": 20,
+      "total": 40
+    },
+    "jisa_imb": {
+      "tp": 20,
+      "fp": 120,
+      "total": 140
+    }
+  },
+  "baselines_balanced": {
+    "accept_all": {
+      "tp": 20,
+      "fp": 20,
+      "tn": 0,
+      "fn": 0,
+      "unclear": 0,
+      "n": 40,
+      "accuracy": 0.5,
+      "precision": 0.5,
+      "recall": 1.0,
+      "specificity": 0.0,
+      "f1": 0.6666666666666666,
+      "mcc": 0.0,
+      "developer_burden": 20,
+      "mean_latency": 0.0,
+      "total_cost": 0.0
+    },
+    "heur_triage": {
+      "tp": 19,
+      "fp": 6,
+      "tn": 14,
+      "fn": 1,
+      "unclear": 0,
+      "n": 40,
+      "accuracy": 0.825,
+      "precision": 0.76,
+      "recall": 0.95,
+      "specificity": 0.7,
+      "f1": 0.8444444444444444,
+      "mcc": 0.6713171133426189,
+      "developer_burden": 56,
+      "mean_latency": 0.0,
+      "total_cost": 0.0
+    },
+    "ml_tfidf_rf": {
+      "tp": 19,
+      "fp": 2,
+      "tn": 18,
+      "fn": 1,
+      "unclear": 0,
+      "n": 40,
+      "accuracy": 0.925,
+      "precision": 0.9047619047619048,
+      "recall": 0.95,
+      "specificity": 0.9,
+      "f1": 0.9268292682926829,
+      "mcc": 0.8510644963469901,
+      "developer_burden": 52,
+      "mean_latency": 0.0,
+      "total_cost": 0.0,
+      "cv_fold_metrics": [
+        {
+          "acc": 0.875,
+          "tp": 3,
+          "fp": 0,
+          "tn": 4,
+          "fn": 1
+        },
+        {
+          "acc": 1.0,
+          "tp": 4,
+          "fp": 0,
+          "tn": 4,
+          "fn": 0
+        },
+        {
+          "acc": 0.875,
+          "tp": 4,
+          "fp": 1,
+          "tn": 3,
+          "fn": 0
+        },
+        {
+          "acc": 0.875,
+          "tp": 4,
+          "fp": 1,
+          "tn": 3,
+          "fn": 0
+        },
+        {
+          "acc": 1.0,
+          "tp": 4,
+          "fp": 0,
+          "tn": 4,
+          "fn": 0
+        }
+      ]
+    }
+  },
+  "emulations_balanced": {
+    "zerofals": {
+      "tp": 15,
+      "fp": 3,
+      "tn": 17,
+      "fn": 5,
+      "unclear": 6,
+      "n": 40,
+      "accuracy": 0.8,
+      "precision": 0.8333333333333334,
+      "recall": 0.75,
+      "specificity": 0.85,
+      "f1": 0.7894736842105262,
+      "mcc": 0.6030226891555273,
+      "developer_burden": 253,
+      "mean_latency": 6.666888731718063,
+      "total_cost": 0.015427500000000002
+    },
+    "qasecclaw": {
+      "tp": 17,
+      "fp": 7,
+      "tn": 13,
+      "fn": 3,
+      "unclear": 3,
+      "n": 40,
+      "accuracy": 0.75,
+      "precision": 0.7083333333333334,
+      "recall": 0.85,
+      "specificity": 0.65,
+      "f1": 0.7727272727272727,
+      "mcc": 0.5103103630798288,
+      "developer_burden": 157,
+      "mean_latency": 13.910968834161759,
+      "total_cost": 0.02038236
+    }
+  },
+  "llm_models_balanced": {
+    "llama-3.3-70b-versatile": {
+      "tp": 19,
+      "fp": 2,
+      "tn": 18,
+      "fn": 1,
+      "unclear": 2,
+      "n": 40,
+      "accuracy": 0.925,
+      "precision": 0.9047619047619048,
+      "recall": 0.95,
+      "specificity": 0.9,
+      "f1": 0.9268292682926829,
+      "mcc": 0.8510644963469901,
+      "developer_burden": 52,
+      "mean_latency": 6.421874558925628,
+      "total_cost": 0.016734630000000004
+    },
+    "qwen/qwen3-32b": {
+      "tp": 20,
+      "fp": 3,
+      "tn": 17,
+      "fn": 0,
+      "unclear": 2,
+      "n": 40,
+      "accuracy": 0.925,
+      "precision": 0.8695652173913043,
+      "recall": 1.0,
+      "specificity": 0.85,
+      "f1": 0.9302325581395349,
+      "mcc": 0.8597269536210952,
+      "developer_burden": 3,
+      "mean_latency": 3.9044083416461945,
+      "total_cost": 0.0076602000000000016
+    },
+    "llama-3.1-8b-instant": {
+      "tp": 20,
+      "fp": 6,
+      "tn": 14,
+      "fn": 0,
+      "unclear": 0,
+      "n": 40,
+      "accuracy": 0.85,
+      "precision": 0.7692307692307693,
+      "recall": 1.0,
+      "specificity": 0.7,
+      "f1": 0.8695652173913044,
+      "mcc": 0.7337993857053428,
+      "developer_burden": 6,
+      "mean_latency": 5.548993879556656,
+      "total_cost": 0.00142203
+    }
+  },
+  "stochastic_variance": {
+    "runs": [
+      {
+        "tp": 18,
+        "fp": 2,
+        "tn": 18,
+        "fn": 2,
+        "unclear": 2,
+        "n": 40,
+        "accuracy": 0.9,
+        "precision": 0.9,
+        "recall": 0.9,
+        "specificity": 0.9,
+        "f1": 0.9,
+        "mcc": 0.8,
+        "developer_burden": 102,
+        "mean_latency": 8.672572892904281,
+        "total_cost": 0.016724939999999997
+      },
+      {
+        "tp": 19,
+        "fp": 3,
+        "tn": 17,
+        "fn": 1,
+        "unclear": 1,
+        "n": 40,
+        "accuracy": 0.9,
+        "precision": 0.8636363636363636,
+        "recall": 0.95,
+        "specificity": 0.85,
+        "f1": 0.9047619047619048,
+        "mcc": 0.8040302522073697,
+        "developer_burden": 53,
+        "mean_latency": 9.082713145017625,
+        "total_cost": 0.01657349
+      },
+      {
+        "tp": 18,
+        "fp": 2,
+        "tn": 18,
+        "fn": 2,
+        "unclear": 2,
+        "n": 40,
+        "accuracy": 0.9,
+        "precision": 0.9,
+        "recall": 0.9,
+        "specificity": 0.9,
+        "f1": 0.9,
+        "mcc": 0.8,
+        "developer_burden": 102,
+        "mean_latency": 5.6634606420993805,
+        "total_cost": 0.016527439999999994
+      }
+    ],
+    "summary": {
+      "accuracy_mean": 0.9,
+      "accuracy_std": 0.0,
+      "f1_mean": 0.9015873015873016,
+      "f1_std": 0.002244783432338238,
+      "mcc_mean": 0.8013434174024566,
+      "mcc_std": 0.0018998791104820796
+    }
+  },
+  "jisa_imb": {
+    "accept_all": {
+      "tp": 20,
+      "fp": 120,
+      "tn": 0,
+      "fn": 0,
+      "unclear": 0,
+      "n": 140,
+      "accuracy": 0.14285714285714285,
+      "precision": 0.14285714285714285,
+      "recall": 1.0,
+      "specificity": 0.0,
+      "f1": 0.25,
+      "mcc": 0.0,
+      "developer_burden": 120,
+      "mean_latency": 0.0,
+      "total_cost": 0.0
+    },
+    "heur_triage": {
+      "tp": 19,
+      "fp": 84,
+      "tn": 36,
+      "fn": 1,
+      "unclear": 0,
+      "n": 140,
+      "accuracy": 0.39285714285714285,
+      "precision": 0.18446601941747573,
+      "recall": 0.95,
+      "specificity": 0.3,
+      "f1": 0.3089430894308943,
+      "mcc": 0.19839291342588872,
+      "developer_burden": 134,
+      "mean_latency": 0.0,
+      "total_cost": 0.0
+    },
+    "llm_llama33": {
+      "tp": 19,
+      "fp": 35,
+      "tn": 85,
+      "fn": 1,
+      "unclear": 24,
+      "n": 140,
+      "accuracy": 0.7428571428571429,
+      "precision": 0.35185185185185186,
+      "recall": 0.95,
+      "specificity": 0.7083333333333334,
+      "f1": 0.5135135135135135,
+      "mcc": 0.4732660601706464,
+      "developer_burden": 85,
+      "mean_latency": 8.834313270023891,
+      "total_cost": 0.06058421000000001
+    }
+  },
+  "mcnemar_tests": {
+    "llm_vs_heur": {
+      "b": 2,
+      "c": 6,
+      "chi2": 1.125,
+      "p_approx": 0.288844,
+      "significant_p05": false
+    },
+    "llm_vs_ml": {
+      "b": 1,
+      "c": 1,
+      "chi2": 0.5,
+      "p_approx": 0.4795,
+      "significant_p05": false
+    }
+  },
+  "calibration": {
+    "ece": 0.015000000000000114,
+    "brier_score": 0.034,
+    "auprc": 0.8740021393553095,
+    "ece_bins": [
+      {
+        "range": "0-79",
+        "count": 2,
+        "acc": 0.0,
+        "conf": 25.0
+      },
+      {
+        "range": "80-89",
+        "count": 0,
+        "acc": 0.0,
+        "conf": 0.0
+      },
+      {
+        "range": "90-100",
+        "count": 38,
+        "acc": 97.36842105263158,
+        "conf": 97.10526315789473
+      }
+    ]
+  }
+}

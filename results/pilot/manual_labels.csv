@@ -1,0 +1,4 @@
+file_path,start_line,rule_id,label
+author_1.py,13,py/path-injection,True Positive
+codeql_1.py,13,py/path-injection,True Positive
+codeql_2.py,11,py/tarslip,True Positive

@@ -1,0 +1,215 @@
+{
+  "config": {
+    "seed": 42,
+    "model": "openai/gpt-oss-20b",
+    "n_tp": 59,
+    "n_fp": 127,
+    "n_balanced": 118,
+    "n_imbalanced": 148,
+    "imb_ratio": 6.048,
+    "n_rules_fp": 12,
+    "n_messages_fp": 12,
+    "boot": 5000,
+    "n_rules_tp": 31,
+    "n_rules_shared": 11,
+    "rules_shared": [
+      "py/bind-socket-all-network-interfaces",
+      "py/code-injection",
+      "py/command-line-injection",
+      "py/incomplete-hostname-regexp",
+      "py/insecure-temporary-file",
+      "py/path-injection",
+      "py/reflective-xss",
+      "py/request-without-cert-validation",
+      "py/stack-trace-exposure",
+      "py/url-redirection",
+      "py/weak-crypto-key"
+    ]
+  },
+  "balanced": [
+    {
+      "triager": "accept_all",
+      "n": 118,
+      "tp": 59,
+      "fp": 59,
+      "tn": 0,
+      "fn": 0,
+      "unclear": 0,
+      "mcc": 0.0,
+      "mcc_ci_lo": 0.0,
+      "mcc_ci_hi": 0.0,
+      "accuracy": 0.5,
+      "burden_fp_plus_50fn": 59,
+      "set": "balanced"
+    },
+    {
+      "triager": "heuristic",
+      "n": 118,
+      "tp": 52,
+      "fp": 44,
+      "tn": 15,
+      "fn": 7,
+      "unclear": 0,
+      "mcc": 0.1741,
+      "mcc_ci_lo": -0.0093,
+      "mcc_ci_hi": 0.3431,
+      "accuracy": 0.5678,
+      "burden_fp_plus_50fn": 394,
+      "set": "balanced"
+    },
+    {
+      "triager": "tfidf_rf",
+      "n": 118,
+      "tp": 35,
+      "fp": 6,
+      "tn": 53,
+      "fn": 24,
+      "unclear": 0,
+      "mcc": 0.5161,
+      "mcc_ci_lo": 0.364,
+      "mcc_ci_hi": 0.6569,
+      "accuracy": 0.7458,
+      "burden_fp_plus_50fn": 1206,
+      "set": "balanced"
+    },
+    {
+      "triager": "tfidf_msgonly",
+      "n": 118,
+      "tp": 36,
+      "fp": 6,
+      "tn": 53,
+      "fn": 23,
+      "unclear": 0,
+      "mcc": 0.531,
+      "mcc_ci_lo": 0.3809,
+      "mcc_ci_hi": 0.6692,
+      "accuracy": 0.7542,
+      "burden_fp_plus_50fn": 1156,
+      "set": "balanced"
+    }
+  ],
+  "imbalanced": [
+    {
+      "triager": "accept_all",
+      "n": 148,
+      "tp": 21,
+      "fp": 127,
+      "tn": 0,
+      "fn": 0,
+      "unclear": 0,
+      "mcc": 0.0,
+      "mcc_ci_lo": 0.0,
+      "mcc_ci_hi": 0.0,
+      "accuracy": 0.1419,
+      "burden_fp_plus_50fn": 127,
+      "set": "imbalanced"
+    },
+    {
+      "triager": "heuristic",
+      "n": 148,
+      "tp": 17,
+      "fp": 102,
+      "tn": 25,
+      "fn": 4,
+      "unclear": 0,
+      "mcc": 0.0056,
+      "mcc_ci_lo": -0.1648,
+      "mcc_ci_hi": 0.1517,
+      "accuracy": 0.2838,
+      "burden_fp_plus_50fn": 302,
+      "set": "imbalanced"
+    },
+    {
+      "triager": "tfidf_rf",
+      "n": 148,
+      "tp": 6,
+      "fp": 1,
+      "tn": 126,
+      "fn": 15,
+      "unclear": 0,
+      "mcc": 0.4567,
+      "mcc_ci_lo": 0.2103,
+      "mcc_ci_hi": 0.6437,
+      "accuracy": 0.8919,
+      "burden_fp_plus_50fn": 751,
+      "set": "imbalanced"
+    },
+    {
+      "triager": "tfidf_msgonly",
+      "n": 148,
+      "tp": 5,
+      "fp": 1,
+      "tn": 126,
+      "fn": 16,
+      "unclear": 0,
+      "mcc": 0.4073,
+      "mcc_ci_lo": 0.1473,
+      "mcc_ci_hi": 0.6047,
+      "accuracy": 0.8851,
+      "burden_fp_plus_50fn": 801,
+      "set": "imbalanced"
+    }
+  ],
+  "mcnemar": {
+    "balanced:accept_all_vs_heuristic": {
+      "b": 7,
+      "c": 15,
+      "p": 0.133801
+    },
+    "balanced:accept_all_vs_tfidf_rf": {
+      "b": 24,
+      "c": 53,
+      "p": 0.00126323
+    },
+    "balanced:accept_all_vs_tfidf_msgonly": {
+      "b": 23,
+      "c": 53,
+      "p": 0.000764582
+    },
+    "balanced:heuristic_vs_tfidf_rf": {
+      "b": 21,
+      "c": 42,
+      "p": 0.0111414
+    },
+    "balanced:heuristic_vs_tfidf_msgonly": {
+      "b": 20,
+      "c": 42,
+      "p": 0.00714873
+    },
+    "balanced:tfidf_rf_vs_tfidf_msgonly": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0
+    },
+    "imbalanced:accept_all_vs_heuristic": {
+      "b": 4,
+      "c": 25,
+      "p": 0.000103716
+    },
+    "imbalanced:accept_all_vs_tfidf_rf": {
+      "b": 15,
+      "c": 126,
+      "p": 4.97173e-23
+    },
+    "imbalanced:accept_all_vs_tfidf_msgonly": {
+      "b": 16,
+      "c": 126,
+      "p": 2.22581e-22
+    },
+    "imbalanced:heuristic_vs_tfidf_rf": {
+      "b": 11,
+      "c": 101,
+      "p": 2.26252e-19
+    },
+    "imbalanced:heuristic_vs_tfidf_msgonly": {
+      "b": 12,
+      "c": 101,
+      "p": 1.07692e-18
+    },
+    "imbalanced:tfidf_rf_vs_tfidf_msgonly": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0
+    }
+  }
+}

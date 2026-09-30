@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the paper below."
+title: "Artifact for: A failed repair of an alert-triage benchmark"
+authors:
+  - family-names: Le
+    given-names: Vinh Thinh
+    orcid: "https://orcid.org/0000-0001-5951-096X"
+  - family-names: Ha
+    given-names: Son X.
+    orcid: "https://orcid.org/0000-0002-5336-0566"
+  - family-names: Phien
+    given-names: Nguyen Ngoc
+    orcid: "https://orcid.org/0000-0001-9152-6208"
+  - family-names: Nguyen
+    given-names: Tung Q.
+    orcid: "https://orcid.org/0009-0003-5046-5535"
+license: MIT
+version: "1.0.0"
+date-released: "2026-09-29"

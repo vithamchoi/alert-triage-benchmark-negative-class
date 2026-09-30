@@ -1,0 +1,60 @@
+rule_id,message,file_path,start_line
+py/bind-socket-all-network-interfaces,Binding a socket to all interfaces (using ['0.0.0.0'](1)) is a security risk.,CWE-605/author_1.py,9
+py/incomplete-hostname-regexp,"This regular expression has an unescaped '.' before 'example.com/', so it might match more hosts than expected.",CWE-020/codeql_3.py,15
+py/incomplete-url-substring-sanitization,The string [example.com](1) may be at an arbitrary position in the sanitized URL.,CWE-020/codeql_4.py,12
+py/path-injection,This path depends on a [user-provided value](1).,CWE-022/author_1.py,13
+py/path-injection,This path depends on a [user-provided value](1).,CWE-022/codeql_1.py,13
+py/path-injection,This path depends on a [user-provided value](1).,CWE-434/pearce_1.py,12
+py/path-injection,This path depends on a [user-provided value](1).,CWE-434/pearce_2.py,15
+py/path-injection,This path depends on a [user-provided value](1).,CWE-099/sonar_1.py,12
+py/path-injection,This path depends on a [user-provided value](1).,CWE-641/sonar_1.py,13
+py/command-line-injection,This command line depends on a [user-provided value](1).,CWE-116/author_1.py,15
+py/command-line-injection,This command line depends on a [user-provided value](1).,CWE-078/codeql_1.py,13
+py/reflective-xss,Cross-site scripting vulnerability due to a [user-provided value](1).,CWE-080/author_1.py,12
+py/reflective-xss,Cross-site scripting vulnerability due to a [user-provided value](1).,CWE-918/codeql_1.py,14
+py/reflective-xss,Cross-site scripting vulnerability due to a [user-provided value](1).,CWE-020/codeql_1.py,10
+py/reflective-xss,Cross-site scripting vulnerability due to a [user-provided value](1).,CWE-079/codeql_2.py,12
+py/reflective-xss,Cross-site scripting vulnerability due to a [user-provided value](1).,CWE-020/codeql_2.py,16
+py/reflective-xss,Cross-site scripting vulnerability due to a [user-provided value](1).,CWE-918/codeql_2.py,17
+py/reflective-xss,Cross-site scripting vulnerability due to a [user-provided value](1).,CWE-079/sonar_1.py,14
+py/ldap-injection,LDAP query parameter (DN) depends on a [user-provided value](1).,CWE-090/codeql_1.py,22
+py/ldap-injection,LDAP query parameter (filter) depends on a [user-provided value](1).,CWE-090/codeql_1.py,22
+py/ldap-injection,LDAP query parameter (DN) depends on a [user-provided value](1).,CWE-090/codeql_2.py,22
+py/ldap-injection,LDAP query parameter (filter) depends on a [user-provided value](1).,CWE-090/codeql_2.py,22
+py/code-injection,This code execution depends on a [user-provided value](1).,CWE-094/codeql_1.py,13
+py/code-injection,This code execution depends on a [user-provided value](1).,CWE-094/sonar_1.py,12
+py/client-exposed-cookie,Sensitive server cookie is set without HttpOnly flag.,CWE-319/author_1.py,29
+py/bad-tag-filter,This regular expression does not match script end tags like </script >.,CWE-116/codeql_1.py,11
+py/stack-trace-exposure,[Stack trace information](1) flows to this location and may be exposed to an external user.,CWE-209/codeql_1.py,19
+py/flask-debug,A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.,CWE-215/codeql_1.py,12
+py/weak-crypto-key,"Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",CWE-326/author_1.py,9
+py/weak-crypto-key,"Creation of an DSA key uses [1024](1) bits, which is below 2048 and considered breakable.",CWE-326/author_2.py,9
+py/weak-cryptographic-algorithm,"[The cryptographic algorithm DES](1) is broken or weak, and should not be used.",CWE-327/codeql_1.py,10
+py/insecure-default-protocol,"Call to deprecated method ssl.wrap_socket does not specify a protocol, which may result in an insecure default being used.",CWE-327/codeql_2.py,11
+py/weak-sensitive-data-hashing,[Sensitive data (certificate)](1) is used in a hashing algorithm (MD5) that is insecure.,CWE-327/codeql_3.py,8
+py/weak-sensitive-data-hashing,"[Sensitive data (password)](1) is used in a hashing algorithm (SHA256) that is insecure for password hashing, since it is not a computationally expensive hash function.",CWE-327/codeql_4.py,7
+py/weak-sensitive-data-hashing,"[Sensitive data (password)](1) is used in a hashing algorithm (MD5) that is insecure for password hashing, since it is not a computationally expensive hash function.",CWE-759/mitre_1.py,9
+py/weak-sensitive-data-hashing,"[Sensitive data (password)](1) is used in a hashing algorithm (MD5) that is insecure for password hashing, since it is not a computationally expensive hash function.",CWE-522/pearce_1.py,17
+py/insecure-temporary-file,Call to deprecated function tempfile.mktemp may be insecure.,CWE-377/codeql_1.py,8
+py/insecure-temporary-file,Call to deprecated function tempfile.mktemp may be insecure.,CWE-379/sonar_1.py,10
+py/unsafe-deserialization,Unsafe deserialization depends on a [user-provided value](1).,CWE-020/codeql_2.py,15
+py/unsafe-deserialization,Unsafe deserialization depends on a [user-provided value](1).,CWE-502/sonar_1.py,11
+py/url-redirection,Untrusted URL redirection depends on a [user-provided value](1).,CWE-601/codeql_1.py,12
+py/url-redirection,Untrusted URL redirection depends on a [user-provided value](1).,CWE-020/codeql_3.py,17
+py/url-redirection,Untrusted URL redirection depends on a [user-provided value](1).,CWE-020/codeql_4.py,13
+py/url-redirection,Untrusted URL redirection depends on a [user-provided value](1).,CWE-601/sonar_2.py,12
+py/xxe,XML parsing depends on a [user-provided value](1) without guarding against external entity expansion.,CWE-611/author_1.py,17
+py/xxe,XML parsing depends on a [user-provided value](1) without guarding against external entity expansion.,CWE-611/codeql_1.py,13
+py/insecure-cookie,Cookie is added to response without the 'secure' flag being set.,CWE-319/author_1.py,29
+py/xpath-injection,XPath expression depends on a [user-provided value](1).,CWE-643/sonar_1.py,17
+py/regex-injection,This regular expression depends on a [user-provided value](1) and is executed by [re.search](2).,CWE-730/codeql_1.py,13
+py/regex-injection,This regular expression depends on a [user-provided value](1) and is executed by [re.search](2).,CWE-730/codeql_2.py,12
+py/regex-injection,This regular expression depends on a [user-provided value](1) and is executed by [re.search](2).,CWE-400/sonar_1.py,18
+py/xml-bomb,XML parsing depends on a [user-provided value](1) without guarding against uncontrolled entity expansion.,CWE-776/codeql_1.py,14
+py/full-ssrf,The full URL of this request depends on a [user-provided value](1).,CWE-918/codeql_1.py,13
+py/tarslip,This file extraction depends on a [potentially untrusted source](1).,CWE-022/codeql_2.py,11
+py/jinja2/autoescape-false,Using jinja2 templates with autoescape=False can potentially allow XSS attacks.,CWE-079/codeql_1.py,13
+py/log-injection,This log entry depends on a [user-provided value](1).,CWE-117/codeql_1.py,15
+py/request-without-cert-validation,This request may run without certificate validation because [it is disabled](1).,CWE-295/codeql_1.py,4
+py/overly-permissive-file,Overly permissive mask in chmod sets file to world readable.,CWE-732/author_1.py,10
+py/partial-ssrf,Part of the URL of this request depends on a [user-provided value](1).,CWE-918/codeql_2.py,16

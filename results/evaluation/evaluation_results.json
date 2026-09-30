@@ -1,0 +1,161 @@
+{
+  "models": {
+    "llama-3.3-70b-versatile": {
+      "tp": 19,
+      "fp": 2,
+      "tn": 18,
+      "fn": 1,
+      "unclear": 1,
+      "accuracy": 0.925,
+      "precision": 0.9047619047619048,
+      "recall": 0.95,
+      "specificity": 0.9,
+      "f1": 0.9268292682926829,
+      "mean_latency": 3.705144280195236,
+      "total_cost": 0.016493380000000002,
+      "mean_prompt_tokens": 506.025,
+      "mean_completion_tokens": 144.025
+    },
+    "qwen/qwen3-32b": {
+      "tp": 20,
+      "fp": 4,
+      "tn": 16,
+      "fn": 0,
+      "unclear": 4,
+      "accuracy": 0.9,
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "specificity": 0.8,
+      "f1": 0.9090909090909091,
+      "mean_latency": 2.367759478092194,
+      "total_cost": 0.008669600000000001,
+      "mean_prompt_tokens": 496.575,
+      "mean_completion_tokens": 587.125
+    },
+    "llama-3.1-8b-instant": {
+      "tp": 20,
+      "fp": 6,
+      "tn": 14,
+      "fn": 0,
+      "unclear": 0,
+      "accuracy": 0.85,
+      "precision": 0.7692307692307693,
+      "recall": 1.0,
+      "specificity": 0.7,
+      "f1": 0.8695652173913044,
+      "mean_latency": 2.942481243610382,
+      "total_cost": 0.0014058099999999997,
+      "mean_prompt_tokens": 491.825,
+      "mean_completion_tokens": 131.925
+    }
+  },
+  "ablations": {
+    "windows": {
+      "2": {
+        "tp": 19,
+        "fp": 8,
+        "tn": 12,
+        "fn": 1,
+        "unclear": 4,
+        "accuracy": 0.775,
+        "precision": 0.7037037037037037,
+        "recall": 0.95,
+        "specificity": 0.6,
+        "f1": 0.8085106382978724,
+        "mean_latency": 5.084572404623032,
+        "total_cost": 0.015274619999999996,
+        "mean_prompt_tokens": 442.7,
+        "mean_completion_tokens": 152.75
+      },
+      "7": {
+        "tp": 19,
+        "fp": 2,
+        "tn": 18,
+        "fn": 1,
+        "unclear": 1,
+        "accuracy": 0.925,
+        "precision": 0.9047619047619048,
+        "recall": 0.95,
+        "specificity": 0.9,
+        "f1": 0.9268292682926829,
+        "mean_latency": 3.705144280195236,
+        "total_cost": 0.016493380000000002,
+        "mean_prompt_tokens": 506.025,
+        "mean_completion_tokens": 144.025
+      },
+      "14": {
+        "tp": 19,
+        "fp": 6,
+        "tn": 14,
+        "fn": 1,
+        "unclear": 5,
+        "accuracy": 0.825,
+        "precision": 0.76,
+        "recall": 0.95,
+        "specificity": 0.7,
+        "f1": 0.8444444444444444,
+        "mean_latency": 4.112135976552963,
+        "total_cost": 0.015198379999999996,
+        "mean_prompt_tokens": 472.375,
+        "mean_completion_tokens": 128.175
+      }
+    },
+    "marker": {
+      "with_marker": {
+        "tp": 19,
+        "fp": 2,
+        "tn": 18,
+        "fn": 1,
+        "unclear": 1,
+        "accuracy": 0.925,
+        "precision": 0.9047619047619048,
+        "recall": 0.95,
+        "specificity": 0.9,
+        "f1": 0.9268292682926829,
+        "mean_latency": 3.705144280195236,
+        "total_cost": 0.016493380000000002,
+        "mean_prompt_tokens": 506.025,
+        "mean_completion_tokens": 144.025
+      },
+      "without_marker": {
+        "tp": 19,
+        "fp": 2,
+        "tn": 18,
+        "fn": 1,
+        "unclear": 1,
+        "accuracy": 0.925,
+        "precision": 0.9047619047619048,
+        "recall": 0.95,
+        "specificity": 0.9,
+        "f1": 0.9268292682926829,
+        "mean_latency": 6.026886463165283,
+        "total_cost": 0.015886490000000003,
+        "mean_prompt_tokens": 466.25,
+        "mean_completion_tokens": 154.525
+      }
+    }
+  },
+  "ece": {
+    "ece_score": 0.022500000000000027,
+    "bins": [
+      {
+        "range": "0-79",
+        "count": 1,
+        "acc": 0.0,
+        "conf": 0.0
+      },
+      {
+        "range": "80-89",
+        "count": 0,
+        "acc": 0.0,
+        "conf": 0.0
+      },
+      {
+        "range": "90-100",
+        "count": 39,
+        "acc": 94.87179487179486,
+        "conf": 97.17948717948718
+      }
+    ]
+  }
+}

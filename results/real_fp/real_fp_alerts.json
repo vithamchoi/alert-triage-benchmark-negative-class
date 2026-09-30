@@ -1,0 +1,1018 @@
+[
+  {
+    "rel_path": "CWE-605/fp_1.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_10.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_11.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_12.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_2.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_3.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_4.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_5.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_6.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_7.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_8.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-605/fp_9.py",
+    "line": 13,
+    "rule_id": "py/bind-socket-all-network-interfaces",
+    "msg": "Binding a socket to all interfaces (using [''](1)) is a security risk.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_1.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_10.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_11.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_12.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_2.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_3.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_4.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_5.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_6.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_7.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_8.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/fp_9.py",
+    "line": 14,
+    "rule_id": "py/incomplete-hostname-regexp",
+    "msg": "This regular expression has an unescaped '.' before 'example.com', so it might match more hosts than expected.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_1.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_10.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_11.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_12.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_2.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_3.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_4.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_5.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_6.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_7.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_8.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/fp_9.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_1.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_10.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_11.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_12.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_2.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_3.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_4.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_5.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_6.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_7.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_8.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-078/fp_9.py",
+    "line": 22,
+    "rule_id": "py/command-line-injection",
+    "msg": "This command line depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_1.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_10.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_11.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_12.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_2.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_3.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_4.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_5.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_6.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_7.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_8.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-089/fp_9.py",
+    "line": 23,
+    "rule_id": "py/sql-injection",
+    "msg": "This SQL query depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_1.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_10.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_11.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_12.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_2.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_3.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_4.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_5.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_6.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_7.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_8.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/fp_9.py",
+    "line": 21,
+    "rule_id": "py/code-injection",
+    "msg": "This code execution depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_1.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_10.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_11.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_12.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_2.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_3.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_4.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_5.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_6.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_7.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_8.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-326/fp_9.py",
+    "line": 9,
+    "rule_id": "py/weak-crypto-key",
+    "msg": "Creation of an RSA key uses [1024](1) bits, which is below 2048 and considered breakable.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_1.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_10.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_11.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_12.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_2.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_3.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_4.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_5.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_6.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_7.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_8.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-377/fp_9.py",
+    "line": 10,
+    "rule_id": "py/insecure-temporary-file",
+    "msg": "Call to deprecated function tempfile.mktemp may be insecure.",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_1.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_10.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_11.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_12.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_2.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_3.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_4.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_5.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_6.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_7.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_8.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/fp_9.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_1.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_10.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_11.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_12.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_2.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_3.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_4.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_5.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_6.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_7.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_8.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-295/fp_9.py",
+    "line": 9,
+    "rule_id": "py/request-without-cert-validation",
+    "msg": "This request may run without certificate validation because [it is disabled](1).",
+    "source": "secure_fp",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/author_1.py",
+    "line": 23,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/author_1.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-502/sonar_1.py",
+    "line": 17,
+    "rule_id": "py/reflective-xss",
+    "msg": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/codeql_1.py",
+    "line": 21,
+    "rule_id": "py/stack-trace-exposure",
+    "msg": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/codeql_1.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/codeql_3.py",
+    "line": 17,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/codeql_4.py",
+    "line": 16,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  }
+]

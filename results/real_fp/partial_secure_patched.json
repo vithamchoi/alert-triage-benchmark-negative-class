@@ -1,0 +1,58 @@
+[
+  {
+    "rel_path": "CWE-022/author_1.py",
+    "line": 23,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-022/author_1.py",
+    "line": 24,
+    "rule_id": "py/path-injection",
+    "msg": "This path depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-502/sonar_1.py",
+    "line": 17,
+    "rule_id": "py/reflective-xss",
+    "msg": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-094/codeql_1.py",
+    "line": 21,
+    "rule_id": "py/stack-trace-exposure",
+    "msg": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-601/codeql_1.py",
+    "line": 21,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/codeql_3.py",
+    "line": 17,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  },
+  {
+    "rel_path": "CWE-020/codeql_4.py",
+    "line": 16,
+    "rule_id": "py/url-redirection",
+    "msg": "Untrusted URL redirection depends on a [user-provided value](1).",
+    "source": "secure_patched",
+    "label": "False Positive"
+  }
+]
