@@ -28,7 +28,7 @@
 \usepackage{url}
 
 \biboptions{authoryear}
-\journal{IEEE Transactions on Software Engineering}
+\journal{Empirical Software Engineering}
 \renewcommand{\figurename}{Fig.}
 
 \newcommand{\vn}[1]{{\fontencoding{T5}\selectfont #1}}
@@ -77,23 +77,22 @@ line of work proposes automated triage as the filter. This paper reports a
 negative result about how that work is measured.
 
 The false-positive half of our own earlier evaluation set was not real: its
-$120$ records are $10$ template messages, one per rule identifier, each cloned
-$12$ times. A bag-of-words model separates ten fixed strings from a real
-positive class almost perfectly, so every comparison drawn on that set, ours
-included, is void.
+$120$ records are \CFabMsgs{} template messages, one per rule identifier, each
+cloned $12$ times, so its effective size is \CFabMsgs{} inputs and every
+comparison drawn on it, ours included, is void. Not for want of difficulty:
+\CFabShared{} of those messages also occur in the positive class. For want of
+independent observations.
 
-We attempted a repair, and it failed in the same way. Believing we were
-scanning third-party code certified as secure, we obtained \RNfp{} alerts and
-re-measured four triagers. A provenance audit then showed
-\CFpSecure{} of those alerts came from files generated locally: ten directories
-of twelve near-identical clones: the same $10 \times 12$ structure, the same
-\texttt{fp\_N.py} naming and the same ten messages as the class we had just
-condemned. The second negative class
-is a reconstruction of the first.
+We attempted a repair, and it failed the same way. Believing we were scanning
+third-party code certified as secure, we obtained \RNfp{} alerts and re-measured
+four triagers. A provenance audit then showed
+\CFpSecure{} of those alerts came from files generated locally: the same
+$10 \times 12$ structure, the same \texttt{fp\_N.py} naming and the same ten
+messages as the class we had just condemned. The second negative class is a
+reconstruction of the first.
 
-We report that failure rather than the result we thought we had, label the
-measurements as ones on a generated corpus, and identify three conditions that
-made it easy to repeat: a provenance claim no artefact records, a directory that
+We report that failure, label the measurements as ones on a generated corpus,
+and identify three conditions that made it easy to repeat: a provenance claim no artefact records, a directory that
 looks upstream once inside the checkout, and a diversity statistic that flags
 the fabricated class and its replacement equally (\CMultFp{} against $12.00$
 alerts per message template). The LLM arm is withdrawn, not re-run, and no
@@ -438,9 +437,14 @@ rule identifier, each repeated exactly $12$ times, in $120$ files named
 \texttt{CWE-NNN/fp\_N.py} across $10$ CWE directories. The regularity is
 mechanical: every rule contributes the same count, and every alert of a rule
 carries character-for-character the same message. They were generated, not
-scanned. A classifier separating that negative class from a genuine positive
-class is separating ten fixed strings from a population of real ones, which any
-bag-of-words model does almost perfectly and which tells an auditor nothing.
+scanned. It is tempting to say such a class is trivially separable, and we said
+so in an earlier draft, but the data do not support it: \CFabShared{} of the
+\CFabMsgs{} messages in that class also appear in the positive class, and a
+lookup table keyed on the message text is correct for only \CFabLookupPct\% of
+the pooled alerts. The defect is not that the negative class is easy. It is that
+\CFabMsgs{} distinct messages cannot carry $120$ independent observations, so
+any figure computed on them has an effective sample size of \CFabMsgs{} and
+tells an auditor nothing about a population of real alerts.
 
 We set out to rebuild the negative class by scanning code known to be secure.
 We believed \texttt{SecurityEval} shipped two directories of deliberately safe
@@ -738,242 +742,6 @@ $n$ & Alert message template \\
 \end{table}
 
 %% ===========================================================================
-\section{Results on the Rebuilt Benchmark}
-\label{sec:realresults}
-
-From the \RNtp{} true and \RNfp{} false positives we build two evaluation sets.
-The balanced set uses every true positive and an equal number of false
-positives, \RNbal{} alerts. The imbalanced set uses every false positive and
-subsamples true positives to a ratio of $1{:}\RImbRatio$, \RNimb{} alerts,
-which is closer to what a developer sees. Each set therefore exhausts whichever
-class limits it, rather than being capped at a round number.
-
-Four triagers are compared: accepting every alert, a hand-written regex
-heuristic, TF-IDF with a Random Forest over \texttt{rule\_id} and message, and
-the same model over the message alone. Matthews correlation is reported with a
-percentile bootstrap over \RBoot{} resamples, and pairs are compared with an
-exact McNemar test on the identical alert set.
-
-\begin{table}[t]
-\caption{Balanced set, \RNbal{} alerts. Confusion is TP/FP/TN/FN. Burden is
-$\mathrm{FP} + 50\,\mathrm{FN}$, the cost model of
-Section~\ref{sec:metrics}.}
-\label{tab:realbal}
-\centering
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lrlrrlr}
-\toprule
-Triager & $n$ & TP/FP/TN/FN & Acc. & MCC & 95\% CI & $B_{\mathrm{dev}}$ \\
-\midrule
-%%ROWS:tab_real_balanced%%
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[t]
-\caption{Imbalanced set, \RNimb{} alerts at $1{:}\RImbRatio$.}
-\label{tab:realimb}
-\centering
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lrlrrlr}
-\toprule
-Triager & $n$ & TP/FP/TN/FN & Acc. & MCC & 95\% CI & $B_{\mathrm{dev}}$ \\
-\midrule
-%%ROWS:tab_real_imbalanced%%
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig_mcc.pdf}
-\caption{Matthews correlation with 95\% bootstrap intervals. Only the two
-TF-IDF variants separate from zero, on either prevalence.}
-\label{fig:mcc}
-\end{figure*}
-
-\subsection{The lexical model separates the classes; the heuristic does not}
-\label{sec:sep}
-
-On the balanced set the TF-IDF classifier reaches
-$\mathrm{MCC} = \RTfidfBalMcc$ with a bootstrap interval of
-$[\RTfidfBalLo, \RTfidfBalHi]$, while the regex heuristic reaches
-$\RHeurBalMcc$ with an interval of $[\RHeurBalLo, \RHeurBalHi]$: an interval
-that contains zero. On the imbalanced set (Table~\ref{tab:realimb}) the gap widens:
-$\RTfidfImbMcc$ against $\RHeurImbMcc$, whose interval again contains zero. Paired McNemar
-separates the two decisively on both sets
-(balanced $p = \RHeurVsTfidf$, imbalanced $p = \RHeurVsTfidfImb$).
-Figure~\ref{fig:mcc} shows both regimes with their intervals.
-
-The practical reading is that the alert message carries enough lexical signal
-to be worth exploiting, and that a hand-written pattern list does not capture
-it. That is a modest claim, but it is the one the data support, and it is the
-baseline any learned or LLM-based triager has to clear.
-
-\subsection{Why the heuristic baseline fails, clause by clause}
-\label{sec:heurwhy}
-
-The regex heuristic is the baseline the literature's hand-written filters
-stand in for, and its near-zero MCC deserves an explanation rather than a
-shrug. Because the heuristic is deterministic and reads only the rule
-identifier, the message and the file path, we can attribute every one of its
-decisions over the whole inventory to the clause that produced it. No sampling
-is involved, so unlike the benchmark results this attribution is exact.
-
-Table~\ref{tab:heurclause} gives the attribution. Two facts explain the
-outcome. First, the path-keyword clause --- which rejects any alert whose path
-contains \texttt{test}, \texttt{example}, \texttt{mock} or \texttt{sample},
-and which in a real repository would do most of the filtering: fires
-\CPathClauseTp{} times on true positives and \CPathClauseFp{} times on false
-positives, that is, never. The corpus names its files by CWE and index rather
-than by role, so the clause has nothing to match. Second, the fall-through
-default is \emph{accept}, and it catches 45 of \RNtp{} true positives and 90 of
-\RNfp{} false positives. The heuristic therefore behaves, on this inventory,
-almost exactly like accept-all with a small hedge-word carve-out: the hedge
-clause rejects \CHedgeTp{} true positives and \CHedgeFp{} false positives, a
-ratio of roughly one to four, which is the only discrimination the whole filter
-achieves.
-
-Over the complete inventory --- all \RNtp{} true and all \RNfp{} false
-positives, with no subsampling --- the heuristic accepts \CHeurFullTP{} of
-\RNtp{} true positives (\CHeurAccTpPct\%) and \CHeurFullFP{} of \RNfp{} false
-positives (\CHeurAccFpPct\%), giving
-$\mathrm{MCC} = \CHeurFullMcc$ against $\CAllPrec$ precision for accept-all on
-the same inventory. That number is not the benchmark result and we do not
-report it as one; it is a property of the filter and the corpus, and it is the
-mechanism behind the benchmark result.
-
-The general lesson is not that regex filters are useless. It is that a filter
-whose discriminating clauses key on repository conventions --- directory names,
-test markers, vendor paths --- transfers nothing to a corpus that does not
-follow those conventions, and a benchmark built from a synthetic corpus will
-therefore understate such a filter's field performance while overstating the
-margin any learned model holds over it. Both directions of that bias are worth
-naming.
-
-\begin{table}[t]
-\centering
-\caption{Which clause of the regex heuristic decides each alert, over the whole
-inventory. The path-keyword clause never fires on this corpus.}
-\label{tab:heurclause}
-\footnotesize
-\setlength{\tabcolsep}{5pt}
-\begin{tabular}{@{}llrr@{}}
-\toprule
-Clause & Verdict & TP & FP \\
-\midrule
-%%ROWS:tab_heur_clauses%%
-\midrule
-Total & & \RNtp & \RNfp \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Dropping the rule identifier changes nothing}
-
-The classifier trained on the message alone reaches $\RMsgBalMcc$ on the
-balanced set against $\RTfidfBalMcc$ for the version that also sees
-\texttt{rule\_id}, and $\RMsgImbMcc$ against $\RTfidfImbMcc$ on the imbalanced
-set. Paired McNemar finds no difference on either
-($p = \RMsgSame$ and $p = \RMsgSameImb$; the two disagree on at most one alert).
-
-This settles the shortcut question raised in Section~\ref{sec:fabricated}. The
-model is not recovering the class from the rule identifier, because removing
-the identifier entirely leaves its decisions unchanged. What it uses is the
-message text.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{figures/fig_burden.pdf}
-\caption{Recall against developer burden, log scale. The fifty-fold penalty on
-misses puts accept-all at the bottom of both curves.}
-\label{fig:burden}
-\end{figure}
-
-\subsection{The cost model makes accepting everything optimal}
-
-Table~\ref{tab:realbal} contains a result that is awkward for the metric rather
-than for any triager. Accepting every alert scores
-$\mathrm{MCC} = \RAllBalMcc$ by construction: it never discriminates --- yet
-its developer burden is $\RAllBalBur$, the \emph{lowest} of the four, against
-$\RTfidfBalBur$ for the classifier with the highest MCC. The same inversion
-holds on the imbalanced set, $\RAllImbBur$ against $\RTfidfImbBur$.
-Figure~\ref{fig:burden} plots the trade-off: burden falls monotonically with
-recall, which is the opposite of what a triage metric should reward.
-
-The cause is the weighting. A burden of
-$\mathrm{FP} + 50\,\mathrm{FN}$ penalises a missed vulnerability fifty times
-more than a wasted review, so a triager that never rejects anything incurs no
-false negatives and therefore no fifty-fold penalty. Under that cost model
-accepting every alert is not merely competitive, it is unbeatable, and no
-amount of classifier quality can overcome it.
-
-We report this rather than quietly re-weighting, because the same cost model
-appears in the surrounding literature and the same inversion will appear
-wherever it is used with a large enough false-negative multiplier. A burden
-metric is only informative if the multiplier is small enough that discrimination
-can pay for itself; otherwise the honest summary is that the metric has already
-chosen the answer. Choosing the multiplier is a deployment decision, and it
-should be stated and justified rather than inherited.
-
-\subsection{All pairwise comparisons, both prevalences}
-\label{sec:allpairs}
-
-Section~\ref{sec:realresults} quotes the two McNemar tests that carry the
-argument. For completeness Table~\ref{tab:mcnfull} gives all six pairwise tests
-on each set, with the discordant counts $b$ and $c$ that the exact test is
-computed from. Reporting the counts matters because a $p$-value on 118 or 148
-paired decisions is easy to over-read: the two TF-IDF variants, for instance,
-differ on a single alert out of \RNbal{} on the balanced set and one out of
-\RNimb{} on the imbalanced set, which is why their $p$-values are exactly
-$1$ and why we treat them as one method rather than two.
-
-Three groupings emerge and they are consistent across prevalences. Accept-all
-and the heuristic are not separated on the balanced set
-($b=7$, $c=15$, $p=0.1338$) and are separated on the imbalanced set only
-because the heuristic's hedge clause rejects enough of the now-dominant
-negatives to register. Both TF-IDF variants separate from both of them on both
-sets, most sharply on the imbalanced set where the discordant counts are
-lopsided by an order of magnitude ($15$ against $126$, and $11$ against
-$101$). And the two TF-IDF variants do not separate from each other anywhere.
-The ordering of the four triagers is therefore stable under a change of
-prevalence, even though every individual metric value moves.
-
-\begin{table*}[t]
-\centering
-\caption{Exact McNemar tests for all pairs of triagers on both evaluation sets.
-$b$ is the number of alerts the first method gets right and the second wrong,
-$c$ the reverse. Computed by \texttt{fix2\_rebuild\_and\_triage.py} and read
-from \texttt{real\_eval/real\_eval\_results.json}.}
-\label{tab:mcnfull}
-\footnotesize
-\setlength{\tabcolsep}{6pt}
-\begin{tabular}{@{}lllrrr@{}}
-\toprule
-Set & Method A & Method B & $b$ & $c$ & $p$ \\
-\midrule
-%%ROWS:tab_mcnemar_full%%
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\subsection{What is not yet measured}
-\label{sec:notyet}
-
-The LLM arm has not been run on the rebuilt benchmark. The earlier version of
-this paper reported LLM accuracy, cost, latency, calibration, context-window
-ablation and explanation quality on the original evaluation set, whose negative
-class we have just shown was fabricated. Those numbers do not transfer and we
-have withdrawn them rather than reprint them beside the corrected benchmark.
-
-What that leaves is a comparison among three non-LLM triagers plus an
-accept-all control, on a benchmark whose both classes are real. We regard this
-as the necessary first step rather than the finished study: the baseline the
-LLM must clear is now established and measured, and the LLM measurement against
-it is the immediate next experiment.
-
 \section{Discussion}
 \label{sec:discussion}
 
@@ -994,6 +762,7 @@ positive by construction, with no annotation effort at all. We see no reason for
 a triage benchmark to synthesise its negatives.
 
 \subsection{What the corrected numbers support, and what they do not}
+\label{sec:disc-support}
 On the rebuilt benchmark the honest statement is narrow. The alert message
 carries lexical signal that a Random Forest can exploit,
 $\mathrm{MCC} = \RTfidfBalMcc$ on the balanced set against $\RHeurBalMcc$ for a
@@ -1003,10 +772,11 @@ also the full extent of the claim: we have shown that a cheap lexical model
 beats a cheap hand-written one, not that either is fit for deployment.
 
 The recall figures make the second half of that sentence concrete. The
-classifier recovers $35$ of \RNtp{} true positives on the balanced set and $6$
-of $21$ on the imbalanced one. A triager that silently discards two-thirds of
-the vulnerabilities it is shown is not a triager a security team can adopt,
-whatever its MCC. Bag-of-words separation and usable triage are different
+classifier recovers $35$ of \RNtp{} true positives on the balanced set, missing
+$41$\%, and $6$ of $21$ on the imbalanced one, missing $71$\%. A triager that
+silently discards two in five of the vulnerabilities it is shown, and seven in
+ten once the prevalence is realistic, is not a triager a security team can
+adopt, whatever its MCC. Bag-of-words separation and usable triage are different
 targets, and this benchmark currently measures only the first.
 
 \subsection{A burden metric can decide the comparison before it starts}
@@ -1146,6 +916,257 @@ the benchmark result we thought we had.
 %% ===========================================================================
 \appendix
 
+\section{Measurements on the Generated Corpus}
+\label{app:results}
+
+Everything in this appendix is a measurement on a corpus we generated
+ourselves, not on a benchmark. Section~\ref{sec:secondfailure} explains why the
+negative class cannot stand in for real false positives, and
+Section~\ref{sec:disc-support} states what these numbers do and do not support.
+We report them in full because withdrawing a result without its evidence is an
+assertion, and because the mechanism they expose --- that an inherited
+prevalence makes accepting every alert unbeatable before any triager runs --- is
+the part that transfers. No figure in this appendix should be quoted as a
+benchmark result.
+
+\subsection{Results on the rebuilt benchmark}
+\label{sec:realresults}
+
+From the \RNtp{} true and \RNfp{} false positives we build two evaluation sets.
+The balanced set uses every true positive and an equal number of false
+positives, \RNbal{} alerts. The imbalanced set uses every false positive and
+subsamples true positives to a ratio of $1{:}\RImbRatio$, \RNimb{} alerts,
+which is closer to what a developer sees. Each set therefore exhausts whichever
+class limits it, rather than being capped at a round number.
+
+Four triagers are compared: accepting every alert, a hand-written regex
+heuristic, TF-IDF with a Random Forest over \texttt{rule\_id} and message, and
+the same model over the message alone. Matthews correlation is reported with a
+percentile bootstrap over \RBoot{} resamples, and pairs are compared with an
+exact McNemar test on the identical alert set.
+
+\begin{table}[t]
+\caption{Balanced set, \RNbal{} alerts. Confusion is TP/FP/TN/FN. Burden is
+$\mathrm{FP} + 50\,\mathrm{FN}$, the cost model of
+Section~\ref{sec:metrics}.}
+\label{tab:realbal}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrlrrlr}
+\toprule
+Triager & $n$ & TP/FP/TN/FN & Acc. & MCC & 95\% CI & $B_{\mathrm{dev}}$ \\
+\midrule
+%%ROWS:tab_real_balanced%%
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Imbalanced set, \RNimb{} alerts at $1{:}\RImbRatio$.}
+\label{tab:realimb}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrlrrlr}
+\toprule
+Triager & $n$ & TP/FP/TN/FN & Acc. & MCC & 95\% CI & $B_{\mathrm{dev}}$ \\
+\midrule
+%%ROWS:tab_real_imbalanced%%
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_mcc.pdf}
+\caption{Matthews correlation with 95\% bootstrap intervals. Only the two
+TF-IDF variants separate from zero, on either prevalence.}
+\label{fig:mcc}
+\end{figure*}
+
+\subsubsection{The lexical model separates the classes; the heuristic does not}
+\label{sec:sep}
+
+On the balanced set the TF-IDF classifier reaches
+$\mathrm{MCC} = \RTfidfBalMcc$ with a bootstrap interval of
+$[\RTfidfBalLo, \RTfidfBalHi]$, while the regex heuristic reaches
+$\RHeurBalMcc$ with an interval of $[\RHeurBalLo, \RHeurBalHi]$: an interval
+that contains zero. On the imbalanced set (Table~\ref{tab:realimb}) the gap widens:
+$\RTfidfImbMcc$ against $\RHeurImbMcc$, whose interval again contains zero. Paired McNemar
+separates the two decisively on both sets
+(balanced $p = \RHeurVsTfidf$, imbalanced $p = \RHeurVsTfidfImb$).
+Figure~\ref{fig:mcc} shows both regimes with their intervals.
+
+The practical reading is that the alert message carries enough lexical signal
+to be worth exploiting, and that a hand-written pattern list does not capture
+it. That is a modest claim, but it is the one the data support, and it is the
+baseline any learned or LLM-based triager has to clear.
+
+\subsubsection{Why the heuristic baseline fails, clause by clause}
+\label{sec:heurwhy}
+
+The regex heuristic is the baseline the literature's hand-written filters
+stand in for, and its near-zero MCC deserves an explanation rather than a
+shrug. Because the heuristic is deterministic and reads only the rule
+identifier, the message and the file path, we can attribute every one of its
+decisions over the whole inventory to the clause that produced it. No sampling
+is involved, so unlike the benchmark results this attribution is exact.
+
+Table~\ref{tab:heurclause} gives the attribution. Two facts explain the
+outcome. First, the path-keyword clause --- which rejects any alert whose path
+contains \texttt{test}, \texttt{example}, \texttt{mock} or \texttt{sample},
+and which in a real repository would do most of the filtering: fires
+\CPathClauseTp{} times on true positives and \CPathClauseFp{} times on false
+positives, that is, never. The corpus names its files by CWE and index rather
+than by role, so the clause has nothing to match. Second, the fall-through
+default is \emph{accept}, and it catches 45 of \RNtp{} true positives and 90 of
+\RNfp{} false positives. The heuristic therefore behaves, on this inventory,
+almost exactly like accept-all with a small hedge-word carve-out: the hedge
+clause rejects \CHedgeTp{} true positives and \CHedgeFp{} false positives, a
+ratio of roughly one to four, which is the only discrimination the whole filter
+achieves.
+
+Over the complete inventory --- all \RNtp{} true and all \RNfp{} false
+positives, with no subsampling --- the heuristic accepts \CHeurFullTP{} of
+\RNtp{} true positives (\CHeurAccTpPct\%) and \CHeurFullFP{} of \RNfp{} false
+positives (\CHeurAccFpPct\%), giving
+$\mathrm{MCC} = \CHeurFullMcc$. Accept-all has $\mathrm{MCC} = 0$ by
+construction and precision $\CAllPrec$ on the same inventory; the heuristic
+therefore buys almost nothing over accepting every alert. That number is not the benchmark result and we do not
+report it as one; it is a property of the filter and the corpus, and it is the
+mechanism behind the benchmark result.
+
+The general lesson is not that regex filters are useless. It is that a filter
+whose discriminating clauses key on repository conventions --- directory names,
+test markers, vendor paths --- transfers nothing to a corpus that does not
+follow those conventions, and a benchmark built from a synthetic corpus will
+therefore understate such a filter's field performance while overstating the
+margin any learned model holds over it. Both directions of that bias are worth
+naming.
+
+\begin{table}[t]
+\centering
+\caption{Which clause of the regex heuristic decides each alert, over the whole
+inventory. The path-keyword clause never fires on this corpus.}
+\label{tab:heurclause}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Clause & Verdict & TP & FP \\
+\midrule
+%%ROWS:tab_heur_clauses%%
+\midrule
+Total & & \RNtp & \RNfp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Dropping the rule identifier changes nothing}
+
+The classifier trained on the message alone reaches $\RMsgBalMcc$ on the
+balanced set against $\RTfidfBalMcc$ for the version that also sees
+\texttt{rule\_id}, and $\RMsgImbMcc$ against $\RTfidfImbMcc$ on the imbalanced
+set. Paired McNemar finds no difference on either
+($p = \RMsgSame$ and $p = \RMsgSameImb$; the two disagree on at most one alert).
+
+This settles the shortcut question raised in Section~\ref{sec:fabricated}. The
+model is not recovering the class from the rule identifier, because removing
+the identifier entirely leaves its decisions unchanged. What it uses is the
+message text.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_burden.pdf}
+\caption{Recall against developer burden, log scale. The fifty-fold penalty on
+misses puts accept-all at the bottom of both curves.}
+\label{fig:burden}
+\end{figure}
+
+\subsubsection{The cost model makes accepting everything optimal}
+
+Table~\ref{tab:realbal} contains a result that is awkward for the metric rather
+than for any triager. Accepting every alert scores
+$\mathrm{MCC} = \RAllBalMcc$ by construction: it never discriminates --- yet
+its developer burden is $\RAllBalBur$, the \emph{lowest} of the four, against
+$\RTfidfBalBur$ for the classifier with the highest MCC. The same inversion
+holds on the imbalanced set, $\RAllImbBur$ against $\RTfidfImbBur$.
+Figure~\ref{fig:burden} plots the trade-off: burden falls monotonically with
+recall, which is the opposite of what a triage metric should reward.
+
+The cause is the weighting. A burden of
+$\mathrm{FP} + 50\,\mathrm{FN}$ penalises a missed vulnerability fifty times
+more than a wasted review, so a triager that never rejects anything incurs no
+false negatives and therefore no fifty-fold penalty. Under that cost model
+accepting every alert is not merely competitive, it is unbeatable, and no
+amount of classifier quality can overcome it.
+
+We report this rather than quietly re-weighting, because the same cost model
+appears in the surrounding literature and the same inversion will appear
+wherever it is used with a large enough false-negative multiplier. A burden
+metric is only informative if the multiplier is small enough that discrimination
+can pay for itself; otherwise the honest summary is that the metric has already
+chosen the answer. Choosing the multiplier is a deployment decision, and it
+should be stated and justified rather than inherited.
+
+\subsubsection{All pairwise comparisons, both prevalences}
+\label{sec:allpairs}
+
+Section~\ref{sec:realresults} quotes the two McNemar tests that carry the
+argument. For completeness Table~\ref{tab:mcnfull} gives all six pairwise tests
+on each set, with the discordant counts $b$ and $c$ that the exact test is
+computed from. Reporting the counts matters because a $p$-value on 118 or 148
+paired decisions is easy to over-read: the two TF-IDF variants, for instance,
+differ on a single alert out of \RNbal{} on the balanced set and one out of
+\RNimb{} on the imbalanced set, which is why their $p$-values are exactly
+$1$ and why we treat them as one method rather than two.
+
+Three groupings emerge and they are consistent across prevalences. Accept-all
+and the heuristic are not separated on the balanced set
+($b=7$, $c=15$, $p=0.1338$) and are separated on the imbalanced set only
+because the heuristic's hedge clause rejects enough of the now-dominant
+negatives to register. Both TF-IDF variants separate from both of them on both
+sets, most sharply on the imbalanced set where the discordant counts are
+lopsided by an order of magnitude ($15$ against $126$, and $11$ against
+$101$). And the two TF-IDF variants do not separate from each other anywhere.
+The ordering of the four triagers is therefore stable under a change of
+prevalence, even though every individual metric value moves.
+
+\begin{table*}[t]
+\centering
+\caption{Exact McNemar tests for all pairs of triagers on both evaluation sets.
+$b$ is the number of alerts the first method gets right and the second wrong,
+$c$ the reverse. Computed by \texttt{fix2\_rebuild\_and\_triage.py} and read
+from \texttt{real\_eval/real\_eval\_results.json}.}
+\label{tab:mcnfull}
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lllrrr@{}}
+\toprule
+Set & Method A & Method B & $b$ & $c$ & $p$ \\
+\midrule
+%%ROWS:tab_mcnemar_full%%
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsubsection{What is not yet measured}
+\label{sec:notyet}
+
+The LLM arm has not been run on the rebuilt benchmark. The earlier version of
+this paper reported LLM accuracy, cost, latency, calibration, context-window
+ablation and explanation quality on the original evaluation set, whose negative
+class we have just shown was fabricated. Those numbers do not transfer and we
+have withdrawn them rather than reprint them beside the corrected benchmark.
+
+What that leaves is a comparison among three non-LLM triagers plus an
+accept-all control, on a benchmark whose both classes are real. We regard this
+as the necessary first step rather than the finished study: the baseline the
+LLM must clear is now established and measured, and the LLM measurement against
+it is the immediate next experiment.
+
+
 \section{Reproduction}
 \label{app:repro}
 
@@ -1234,6 +1255,11 @@ this paper are the two structural constants stated in prose: the \(5\) folds of
 the cross-validation and the \(50\times\) multiplier of the burden metric, both
 of which are choices rather than measurements.
 
+\section*{Acknowledgements}
+
+The authors acknowledge the support of time and facilities from the HCM City
+University of Technology and Engineering (HCM-UTE) for this study.
+
 \section*{CRediT authorship contribution statement}
 
 \textbf{Vinh Thinh Le:} Conceptualization, Methodology, Writing -- original draft.
@@ -1260,11 +1286,10 @@ paper. Every number, table and figure here is produced by running those scripts
 against those files; none is transcribed by hand.
 
 The artefact (result files, generator scripts and \LaTeX{} sources) is publicly
-available at \url{https://github.com/vithamchoi/alert-triage-benchmark-negative-class}, where the commit that
-produced this version is tagged \texttt{v1.0.0}. Re-running the generators in
-\path{latex/} against \path{results/} regenerates every table, figure and
-inline number in this paper. The same artefact will be deposited in a public
-archive under a persistent identifier.
+available at \url{https://github.com/vithamchoi/alert-triage-benchmark-negative-class} and archived at
+\url{https://doi.org/10.5281/zenodo.23063370}, a persistent identifier that resolves to the current
+version. Re-running the generators in \path{latex/} against \path{results/}
+regenerates every table, figure and inline number in this paper.
 
 \bibliographystyle{elsarticle-harv}
 \bibliography{refs}
